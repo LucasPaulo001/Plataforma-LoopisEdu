@@ -1,0 +1,159 @@
+:root {
+  --secondary-color: #cbbaee;
+  --background-color: #121668;
+  --secondary-background-color: #06163a;
+  --separator-color: #163b99;
+  --loopis: #2ABBFE;
+  --loopis_edu: rgb(209, 24, 209);
+  --detail: rgb(255, 143, 255);
+
+  --white: white;
+}
+
+.line{
+    height: 4px;
+    width: 100%;
+    display: flex;
+    background-color: var(--secondary-color);
+}
+
+.detail{
+    color: var(--detail);
+    font-weight: bold;
+    animation: detailAnimation 2s ease-in-out infinite
+}
+
+@keyframes detailAnimation {
+    0%{
+        text-shadow: 0;
+    }
+    50%{
+        text-shadow: 0px 0px 20px;
+    }
+    100%{
+        text-shadow: 0;
+    }
+}
+
+#mvv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3vw;
+    font-size: 1.5vw;
+    height: 80vh;
+}
+
+#description{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    gap: 2vw;
+    height: 80vh;
+    font-size: 2vw;
+}
+
+.aboutEJ{
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+.about{
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+    width: 90%;
+    align-items: center;
+    justify-content:space-between;
+}
+
+.aboutEJ a{
+    text-decoration: none;
+    color: var(--loopis);
+}
+
+#page_sobre{
+    background-color: var(--secondary-background-color);
+    padding: 2vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+
+#loopis{
+    color: var(--loopis);
+    font-weight: bold;
+}
+
+#loopis_edu{
+    color: var(--loopis_edu);
+    font-weight: bold
+}
+
+.list__ ul{
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+
+.list__ ul li{
+    list-style: none;
+}
+
+.objective{
+   display: flex;
+   flex-direction: column;
+   gap: 2vw;
+   width: 50%;
+}
+@media(max-width: 640px){
+    #description{
+        flex-direction: column;
+        font-size: 4vw;
+        gap: 3.5em;
+    }
+    #description #img_about{
+        height: 70px;
+    }
+
+    .aboutEJ{
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .line{
+        margin: 3em 0;
+    }
+
+    .objective{
+        width: 100%;
+        gap: 6vw
+    }
+
+    .about{
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .list__ ul{
+        gap: 8vw;
+    }
+
+    #mvv{
+        font-size: 4vw;
+        gap: 8vw;
+        height: auto;
+    }
+
+    #img_about img{
+        height: 100%;
+    } 
+}

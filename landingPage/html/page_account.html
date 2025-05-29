@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <link rel="stylesheet" href="../css/style_login.css">
+    <script src="https://kit.fontawesome.com/cabab9bb0d.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!--Fazer login-->
+        <div class="content first-content">
+            <!--Coluna esquerda da janela de login-->
+            <div class="first-column">
+                <h2 class="title title_primary">Bem vindo de volta !</h2>
+                <p class="description description-primary">Conecte-se conosco</p>
+                <p class="description">Por favor, faça login com suas credenciais</p>
+                <button class="btn btn-primary" id="signin">Sign in</button>
+            </div>
+            <!--Coluna direita da janela de login-->
+            <div class="second-column">
+                <h2 class="title title_second">Criar conta</h2>
+
+                <!--Ícones para fazer o login com (Google, Facebook, GuitHub)-->
+                <div class="social_midia">
+                    <ul class="list_social-media">
+                        <a href="" class="link_social_media">
+                            <li class="item_social">
+                                <i class="fa-brands fa-google icon_social"></i>
+                            </li>
+                        </a>
+                        <a href="" class="link_social_media">
+                            <li class="item_social">
+                                <i class="fa-brands fa-facebook-f icon_social"></i>
+                            </li>
+                        </a>
+                        <a href="" class="link_social_media">
+                            <li class="item_social">
+                                <i class="fa-brands fa-github icon_social"></i>
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+                <p class="description description-second">Ou use seu email para se registrar</p>
+
+                <!--Inputs para inserir as credenciais, estão inclusos os ícones á esquerda-->
+                <form class="form">
+                    <label for="" class="label_input">
+                        <i class="fa-regular fa-user icon_modify"></i>
+                        <input type="text" id="" placeholder="Nome">
+                    </label>
+                    <label for="" class="label_input">
+                        <i class="fa-regular fa-envelope icon_modify"></i>
+                        <input type="email" name="" id="" placeholder="Email">
+                    </label>
+                    <label for="" class="label_input">
+                        <i class="fa-solid fa-lock icon_modify"></i>
+                        <input type="password" name="" id="" placeholder="Senha">
+                    </label>
+                    <button class="btn btn-second" >Sign up</button>
+                </form>
+            </div>
+        </div>
+
+
+        <!--Criar conta - second - content (Segunda tela após a animação)-->
+        <div class="content second-content">
+
+            <!--Segunda coluna á direita(Modificada a partir do css para ir para a direita)-->
+            <div class="first-column">
+                <h2 class="title title_primary">Olá, amigo</h2>
+                <p class="description description-primary">Conecte-se com sua conta</p>
+                <p class="description description-primary">Por favor, faça login com suas credenciais</p>
+                <button class="btn btn-primary" id="signup">Sign up</button>
+            </div>
+            <!--Coluna esquerda da janela de login-->
+            <div class="second-column">
+                <h2 class="title title_second">Faça login com a sua conta</h2>
+                <div class="social_midia">
+
+                    <!--Ícones para fazer o login com (Google, Facebook, GuitHub)-->
+                    <ul class="list_social-media">
+                        <a href="" class="link_social_media">
+                            <li class="item_social">
+                                <i class="fa-brands fa-google icon_social"></i>
+                            </li>
+                        </a>
+                        <a href="" class="link_social_media">
+                            <li class="item_social">
+                                <i class="fa-brands fa-facebook-f icon_social"></i>
+                            </li>
+                        </a>
+                        <a href="" class="link_social_media">
+                            <li class="item_social">
+                                <i class="fa-brands fa-github icon_social"></i>
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+                <p class="description description-second">Ou use seu email de registro</p>
+
+                <!--Inputs para inserir as credenciais, estão inclusos os ícones á esquerda e o "Esqueci minha senha"-->
+                <form class="form">
+                    <label for="" class="label_input">
+                        <i class="fa-regular fa-envelope icon_modify"></i>
+                        <input type="email" name="" id="" placeholder="Email">
+                    </label>
+                    <label for="" class="label_input">
+                        <i class="fa-solid fa-lock icon_modify"></i>
+                        <input type="password" name="" id="" placeholder="Senha">
+                    </label>
+
+                    <a href="#" class="password">Esqueci minha senha</a>
+                    <button class="btn btn-second">Sign in</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/main_login.js"></script>
+</body>
+
+</html>

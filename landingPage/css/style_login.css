@@ -1,0 +1,334 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+body {
+    background-image: linear-gradient(to right, rgb(18, 22, 104), rgb(6, 22, 58));
+    font-family: "Inter", sans-serif;
+}
+
+.content {
+    border-radius: 15px;
+    background-color: rgb(255, 255, 255);
+    width: 960px;
+    height: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content::before {
+    content: "";
+    position: absolute;
+    background-image: linear-gradient(to bottom, rgb(165, 41, 130), rgb(144, 42, 161));
+    height: 100%;
+    width: 40%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.first-column {
+    text-align: center;
+    width: 40%;
+    z-index: 10;
+
+}
+
+.second-column {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.first-content {
+    display: flex;
+    position: relative;
+}
+
+.first-content .second-column {
+    z-index: 12;
+}
+
+.second-content {
+    position: absolute;
+    display: flex;
+}
+
+.list_social-media>a li {
+    list-style: none;
+}
+
+.item_social {
+    border: 1px rgba(0, 0, 0, 0.315) solid;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+}
+
+.link_social_media:hover .item_social {
+    background-color: rgba(155, 43, 125, 0.959);
+    color: white;
+    transition: all 0.3s;
+
+}
+
+.link_social_media:not(:first-child) {
+    margin-left: 10px;
+}
+
+.title_second {
+    color: rgba(155, 43, 125, 0.959);
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.title_primary {
+    color: white;
+}
+
+.description {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.589);
+    line-height: 30px;
+}
+
+.description-second {
+    color: rgba(0, 0, 0, 0.685);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    text-align: center;
+
+}
+
+.form>label input {
+    height: 30px;
+    border: none;
+    background-color: rgb(236, 234, 234);
+    width: 100%;
+}
+
+.label_input {
+    background-color: rgb(236, 234, 234);
+    display: flex;
+    align-items: center;
+    margin: 8px;
+}
+
+.icon_modify {
+    padding: 0 5px;
+    color: rgba(192, 192, 192, 0.918);
+}
+
+.btn {
+    padding: 10px 15px;
+    border-radius: 16px;
+    border: 1px white solid;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 150px;
+    align-self: center;
+    background-color: transparent;
+}
+
+.btn-second {
+    background-color: rgba(155, 43, 125, 0.959);
+    color: rgba(255, 255, 255, 0.801);
+    border: 1px rgba(155, 43, 125, 0.959) solid;
+}
+
+.btn-second:hover {
+    background-color: white;
+    color: rgba(155, 43, 125, 0.959);
+    transition: all 0.5s;
+}
+
+.btn-primary {
+    background-color: transparent;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: white;
+    color: rgba(155, 43, 125, 0.959);
+    transition: all 0.5s;
+}
+
+.list_social-media {
+    display: flex;
+}
+
+/*Second content*/
+.second-content .first-column {
+    order: 2;
+    z-index: -1;
+}
+
+.second-content .second-column {
+    order: 1;
+    z-index: -1;
+}
+
+.content::before {
+    left: 0;
+}
+
+.password {
+    text-decoration: none;
+    color: rgb(139, 139, 139);
+    font-size: 14px;
+    margin: 15px 0;
+}
+
+.sign_in-js .first-content .first-column,
+.sign_in-js .first-content .second-column {
+    z-index: -1;
+}
+
+.sign_in-js .second-content .second-column {
+    z-index: 11;
+}
+
+.sign_in-js .second-content .first-column {
+    z-index: 13;
+}
+
+.sign_up-js .content::before {
+    animation: slideout 1s;
+    z-index: 12;
+}
+
+.sign_in-js .content::before {
+    left: 60%;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    animation: slidein 1s;
+    z-index: 12;
+}
+
+.sign_up-js .second-content .first-column,
+.sign_up-js .second-content .first-column {
+    z-index: -1;
+}
+
+.sign_up-js .first-content .second-column {
+    z-index: 11;
+}
+
+.sign_up-js .first-content .first-column {
+    z-index: 13;
+}
+
+/*Animação CSS*/
+
+@keyframes slidein {
+    from {
+
+        left: 0;
+        width: 40%;
+
+    }
+
+    to {
+        left: 60%;
+        width: 40%;
+
+    }
+}
+
+@keyframes slideout {
+    from {
+        left: 60%;
+        width: 40%;
+    }
+
+    to {
+        left: 0;
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 1040px) {
+    .content {
+        width: 100%;
+        height: 100%;
+    }
+
+    .content::before {
+        width: 100%;
+        height: 40%;
+        top: 0;
+        border-radius: 0;
+    }
+
+    .first-content,
+    .second-content {
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .first-column, .second-column{
+        width: 100%;
+    }
+
+    .sign_in-js .content::before {
+        top: 60%;
+        left: 0;
+        border-radius: 0;
+    }
+    .form{
+        width: 90%;
+    }
+
+    /*Animação mobile CSS*/
+
+    @keyframes slidein {
+        from {
+            top: 0;
+            height: 40%;
+
+        }
+
+        to {
+            top: 60%;
+            height: 40%;
+
+        }
+    }
+
+    @keyframes slideout {
+        from {
+            top: 60%;
+            height: 40%;
+        }
+
+        to {
+            top: 0;
+            height: 40%;
+        }
+    }
+}
+@media (min-width: 720px) and (max-width: 1040px){
+    .form{
+        width: 60%;
+    }
+}

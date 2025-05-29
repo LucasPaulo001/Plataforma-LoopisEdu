@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Page - Loopis Edu</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/about.css">
+  </head>
+
+  <body>
+    <!--Desenvolvam em baixo de seus nomes-->
+
+    <!--Cabeçalho, onde está incluso o título da logo e o menu de navegação-->
+    <header>
+      <div id="header-flex-content">
+        <!--1º página = Lucas-->
+        <div id="titulo">
+          <h1><span id="logo">Loopis</span> <span id="destaque">edu</span></h1>
+        </div>
+        <!--botao hamburguer-->
+        <button id="btn_menu" onclick="clickAnimation()">
+          <span class="linha"></span>
+          <span class="linha"></span>
+          <span class="linha"></span>
+        </button>
+        <!--menu com os itens-->
+        <div id="menu">
+          <ul id="itens">
+            <li><a href="#contact">Contato</a></li>
+            <li><a href="#div_page_2">Cursos</a></li>
+            <li><a href="">Sobre</a></li>
+            <li><a href="html/page_account.html" id="btn_entrar">Entrar</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr id="header-separator" class="separator">
+      <!--Menu mobile-->
+      <div id="menu-mobile" aria-hidden="true">
+        <nav>
+          <a href="#contact">Contato</a>
+          <a href="#div_page_2">Cursos</a>
+          <a href="">Sobre</a>
+          <a href="html/page_account.html" id="btn_entrar">Entrar</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <!--Container que está com o os textos, a imagem lateral e o botao de matricule-se-->
+      <div id="container01">
+        <div id="txt_pag1">
+          <div id="txt">
+            <h1>Capacite-se com a Loopis Edu</h1>
+            <p>
+              Plataforma da Loopis Jr. com formações para membros e colaboradores!
+            </p>
+          </div>
+
+          <!--Botão "Matricule-se"-->
+          <div id="btn_pag_01">
+            <a href="#div_page_2"><button id="btn_matricular">Ver capacitações</button></a>
+          </div>
+        </div>
+
+        <!--Imagem lateral-->
+        <div id="img_pag1">
+          <img class="img_home" src="assets/images/imagem_início.jpg" alt="" />
+        </div>
+      </div>
+      
+      <!--Sobre a Loopis-->
+
+      <div id="page_sobre">
+        <section id="description">
+          <div class="aboutEJ">
+            <h2>Sobre a EJ</h2>
+            <p>A <span id="loopis"><a href="https://loopisjr.com.br/index.html">Loopis</a></span> é a empresa Júnior do curso de Análise e Desenvolvimento de Sistemas do IFPB Campus Cajazeiras.</p>
+          </div>
+          <div id="img_about">
+            <img src="assets/images/LogoPNG.png" height="100px" alt="">
+          </div>
+        </section>
+
+        <span class="line"></span>
+
+        <section id="mvv">
+          <div class="about">
+            <div class="objective">
+              <h2>Objetivos da Plataforma</h2>
+              <p>A <span id="loopis_edu">Loopis Edu</span> é uma iniciativa da Loopis Jr. que tem como principal objetivo capacitar os membros da empresa por meio de trilhas formativas, cursos internos e experiências práticas.</p>
+            </div>
+            <div>
+              <img src="assets/images/objetivo.png" height="200px" alt="">
+            </div>
+          </div>
+          <div class="list__">
+            <ul>
+              <li><span class="detail">Incentive o aprendizado contínuo</span> dentro da empresa.</li>
+              <li><span class="detail">Fortaleça o desenvolvimento técnico e pessoal</span> dos integrantes.</li>
+              <li><span class="detail">Aumente a maturidade dos projetos</span>, promovendo padronização e qualidade.</li>
+              <li><span class="detail">Valorize o protagonismo dos membros</span>, permitindo que compartilhem conhecimentos em capacitações próprias.</li>
+              <li><span class="detail">Construa uma cultura de evolução colaborativa</span>, onde todos aprendem e ensinam.</li>
+            </ul>
+          </div>
+        </section>
+
+      </div>
+
+
+
+      <!--2º página = Franks-->
+      <div id="div_page_2">
+        <h1 id="title">Capacitações</h1>
+        <div class="option">
+          <img class="optionImg" src="assets/images/4884785 3.png" alt="" />
+          <div class="description">
+            <h1 class="OptionTitle">Front-End</h1>
+            <p>
+              Descubra o fascinante mundo do desenvolvimento web com nosso curso
+              de front-end
+            </p>
+            <a class="option_bttn_link" href="#container_front-end">
+              <button class="option_bttn">
+                <b>Vamos nessa!</b>
+              </button>
+            </a>
+          </div>
+        </div>
+        <hr class="separator" />
+        <div class="option">
+          <img
+            class="optionImg"
+            src="assets/images/Operating system-rafiki 3.png"
+            alt=""
+          />
+          <div class="description">
+            <h1 class="OptionTitle">Back-End</h1>
+            <p>
+              Seja o arquiteto invisível por trás das experiências online
+              inscreva-se agora em nosso curso de backend
+            </p>
+              <a class="option_bttn_link" href="#container_back-end">
+                <button class="option_bttn">Vamos nessa!</button>
+              </a>
+          </div>
+        </div>
+      </div>
+      <div id="container_front-end">
+        <!--Primeira parte do conteúdo do front-end-->
+        <div id="part_html">
+          <div class="top">
+            <!--"top", parte de cima do documento-->
+              <!--Imagem da parte html-->
+              <div class="img-div">
+                <img
+                  src="assets/images/Content structure-amico.png"
+                  alt=""
+                  class="img"
+                  height="292px"
+                />
+              </div>
+              <!--Texto da parte html-->
+              <p class="txt">
+                Se você já ficou perdido no meio de 'tags' e 'divs', nosso curso
+                de HTML vai te dar o mapa do tesouro para encontrar seu caminho!
+              </p>
+          </div>
+          <div class="low">
+            <!--"low", parte de baixo do documento - listas-->
+            <div class="content">
+              <div class="title">
+                <h1>O que te <span class="color">espera</span></h1>
+              </div>
+              <div class="list">
+                <ul class="content-list">
+                  <li>Introdução ao HTML</li>
+                  <li>Estruturação de Páginas</li>
+                  <li>Formatação de Texto</li>
+                  <li>Links e Imagens</li>
+                  <li>Listas e Tabelas</li>
+                  <li>Formulários</li>
+                  <li>Elementos Semânticos</li>
+                  <li>Dicas e Boas Práticas</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="part_css">
+          <div class="top">
+            <!--"top", parte de cima do documento-->
+              <!--Imagem da parte html-->
+              <div class="img-div">
+                <img
+                  src="assets/images/Usability testing-pana.png"
+                  alt=""
+                  class="img"
+                  height="292px"
+                />
+              </div>
+              <!--Texto da parte html-->
+              <p class="txt">
+                Aprenda também o ilustre CSS, porque ninguém merece um site que
+                parece ter saído dos anos 90! Inscreva-se agora e dê uma
+                atualizada no visual da sua presença online!
+              </p>
+          </div>
+          <div class="low">
+            <!--"low", parte de baixo do documento - listas-->
+            <div class="title">
+              <h1>O que te <span class="color">espera</span></h1>
+            </div>
+            <div class="list">
+              <ul class="content-list">
+                <li>Introdução ao CSS</li>
+                <li>Seletores e Estilos Básicos</li>
+                <li>Estilização de Texto e Cores</li>
+                <li>Layouts com CSS</li>
+                <li>Box Model e Posicionamento</li>
+                <li>Estilos Avançados: Gradientes e Sombras</li>
+                <li>Responsividade e Media Queries</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div id="part_javascript">
+          <div class="top">
+            <!--"top", parte de cima do documento-->
+              <!--Imagem da parte html-->
+              <div class="img-div">
+                <img
+                  src="assets/images/Website Creator-bro.png"
+                  alt=""
+                  class="img"
+                  height="292px"
+                />
+              </div>
+              <!--Texto da parte html-->
+              <p class="txt">
+                Seu site merece mais do que apenas HTML e CSS. Aprenda
+                JavaScript e leve-o para o próximo nível de funcionalidade e
+                interatividade!
+              </p>
+          </div>
+          <div class="low">
+            <!--"low", parte de baixo do documento - listas-->
+            <div class="title">
+              <h1>O que te <span class="color">espera</span></h1>
+            </div>
+            <div class="list">
+              <ul class="content-list">
+                <li>Variáveis e Tipos de Dados</li>
+                <li>Operadores e Estruturas de Controle</li>
+                <li>Funções e Escopo</li>
+                <li>Arrays e Objetos</li>
+                <li>Manipulação do DOM e Eventos</li>
+                <li>Assincronismo e Promessas</li>
+                <li>ES6+ Features</li>
+                <li>Frameworks e Bibliotecas</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="btn-part-front">
+          <a href="#pagina3"><button class="btn-front">Ver planos</button></a>
+        </div>
+      </div>
+      <div id="container_back-end">
+        <div class="top">
+            <h2 class="txt">
+              O que <span class="color-be">te espera</span>, só que dessa vez no
+              nosso Curso Back-End
+            </h2>
+            <div class="img-div">
+              <img class="img" src="assets/images/part-backend-img.png" alt="" />
+            </div>
+        </div>
+        <div class="low-back-end">
+          <div class="programation_language">
+            <div class="img-language">
+              <img src="assets/images/C.png" alt="" />
+            </div>
+            <div class="txt-language">
+              <h1>C</h1>
+              <p>
+                De sistemas operacionais a microcontroladores, C é como um
+                alicerce sólido sobre o qual todo o mundo da programação é
+                construído.
+              </p>
+            </div>
+          </div>
+          <div class="programation_language">
+            <div class="img-language">
+              <img src="assets/images/Python.png" alt="" />
+            </div>
+            <div class="txt-language">
+              <h1>Python</h1>
+              <p>
+                Com Python, você pode resolver problemas complexos com código
+                simples e elegante - é como um truque de mágica que sempre
+                impressiona.
+              </p>
+            </div>
+          </div>
+          <div class="programation_language">
+            <div class="img-language">
+              <img src="assets/images/Node.js.png" alt="" />
+            </div>
+            <div class="txt-language">
+              <h1>Node JS</h1>
+              <p>
+                Quer construir um site, uma API, um servidor de jogos? Com
+                Node.js, o céu é o limite (e talvez nem isso)!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="btn-part-front">
+          <a href="#pagina3"><button class="btn-front">Ver planos</button></a>
+        </div>
+      </div>
+        <!--3º página = Alexandre-->
+        <!--<section id="pagina3">
+            <h1>Hora de <strong>atualizar seu cérebro!</strong> Clique em <strong>'Comprar agora'</strong> para instalar as últimas atualizações de conhecimento.</h1>
+            <div id="blocos">
+                <div id="div1" >
+                    <img class="infinito" src="assets/images/Untitled (1).png" alt="infinito">
+                    <img class="seta" src="assets/images/proximo.png" alt="seta">
+                    <h2>Loopis <strong>edu</strong> Basic</h2>
+                    <p>Escolha entre BackEnd e FrontEnd</p>
+                    <button id="comprar-basic" type="button">Comprar agora</button>
+                </div>
+            
+                <div id="div2">
+                    <img class="infinito" src="assets/images/Untitled (1).png" alt="infinito">
+                    <img class="seta" src="assets/images/proximo.png" alt="seta">
+                    <h2>Loopis <strong>edu</strong> Pro</h2>
+                    <p>Tenha acesso a todos os cursos</p>
+                    <button id="comprar-Pro" type="button">Comprar agora</button>
+                </div>
+            </div>
+        </section>-->
+
+        <!--4º página = Anderson-->
+        <div id="contact" class="container-contact">
+            <div class="container-contact-image">
+                <img src="./assets/images/Chatting-amico.png" alt="">
+            </div>
+            <div class="container-contact-form">
+                <h1 class="title-form">Vamos ficar em contato!</h1>
+                <form action="" class="contact-form">
+                    <div class="container-contact-form-itens">
+                        <input type="text" id="contact-name" placeholder="Nome">
+                    </div>
+                    <div class="container-contact-form-itens">
+                        <input type="email" id="contact-email" placeholder="Email">
+                    </div>
+                    <div class="container-contact-form-itens">
+                        <textarea name="message" id="contact-message" placeholder="Mensagem..."></textarea>
+                    </div>
+                    <div class="container-contact-form-itens">
+                        <button type="button" id="contact-envit" class="contact-form-button-envit">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+      <!--Faz parte da 4° página-->
+    </footer>
+    <script src="js/main.js"></script>
+  </body>
+</html>

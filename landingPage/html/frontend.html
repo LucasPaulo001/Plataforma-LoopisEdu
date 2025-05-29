@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Page - Loopis Edu</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+
+  <body>
+    <!--Desenvolvam em baixo de seus nomes-->
+
+    <!--Cabeçalho, onde está incluso o título da logo e o menu de navegação-->
+    <header>
+      <div id="header-flex-content">
+        <!--1º página = Lucas-->
+        <div id="titulo">
+          <h1><span id="logo">Loopis</span> <span id="destaque">edu</span></h1>
+        </div>
+        <!--botao hamburguer-->
+        <button id="btn_menu" onclick="clickAnimation()">
+          <span class="linha"></span>
+          <span class="linha"></span>
+          <span class="linha"></span>
+        </button>
+        <!--menu com os itens-->
+        <div id="menu">
+          <ul id="itens">
+            <li><a href="">Contato</a></li>
+            <li><a href="#div_page_2">Cursos</a></li>
+            <li><a href="">Sobre</a></li>
+            <li><a href="html/page_account.html" id="btn_entrar">Entrar</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr id="header-separator" class="separator">
+    </header>
+    <main id="main">
+      <!--Menu mobile-->
+      <div id="menu-mobile" aria-hidden="true">
+        <nav>
+          <a href="">Contato</a>
+          <a href="#div_page_2">Cursos</a>
+          <a href="">Sobre</a>
+          <a href="html/page_account.html" id="btn_entrar">Entrar</a>
+        </nav>
+      </div>
+      <!--3º página = Alexandre-->
+      <div id="container_front-end">
+        <!--Primeira parte do conteúdo do front-end-->
+        <div id="part_html">
+          <div class="top">
+            <!--"top", parte de cima do documento-->
+            <div class="img">
+              <!--Imagem da parte html-->
+              <img
+                src="assets/images/Content structure-amico.png"
+                alt=""
+                height="292px"
+              />
+            </div>
+            <div class="txt">
+              <!--Texto da parte html-->
+              <p>
+                Se você já ficou perdido no meio de 'tags' e 'divs', nosso curso
+                de HTML vai te dar o mapa do tesouro para encontrar seu caminho!
+              </p>
+            </div>
+          </div>
+          <div class="low">
+            <!--"low", parte de baixo do documento - listas-->
+            <div class="content">
+              <div class="title">
+                <h1>O que te <span class="color">espera</span></h1>
+              </div>
+              <div class="list">
+                <ul class="content-list">
+                  <li>Introdução ao HTML</li>
+                  <li>Estruturação de Páginas</li>
+                  <li>Formatação de Texto</li>
+                  <li>Links e Imagens</li>
+                  <li>Listas e Tabelas</li>
+                  <li>Formulários</li>
+                  <li>Elementos Semânticos</li>
+                  <li>Dicas e Boas Práticas</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="part_css">
+          <div class="top">
+            <!--"top", parte de cima do documento-->
+            <div class="img">
+              <!--Imagem da parte html-->
+              <img
+                src="assets/images/Usability testing-pana.png"
+                alt=""
+                height="292px"
+              />
+            </div>
+            <div class="txt">
+              <!--Texto da parte html-->
+              <p>
+                Aprenda também o ilustre CSS, porque ninguém merece um site que
+                parece ter saído dos anos 90! Inscreva-se agora e dê uma
+                atualizada no visual da sua presença online!
+              </p>
+            </div>
+          </div>
+          <div class="low">
+            <!--"low", parte de baixo do documento - listas-->
+            <div class="title">
+              <h1>O que te <span class="color">espera</span></h1>
+            </div>
+            <div class="list">
+              <ul class="content-list">
+                <li>Introdução ao CSS</li>
+                <li>Seletores e Estilos Básicos</li>
+                <li>Estilização de Texto e Cores</li>
+                <li>Layouts com CSS</li>
+                <li>Box Model e Posicionamento</li>
+                <li>Estilos Avançados: Gradientes e Sombras</li>
+                <li>Responsividade e Media Queries</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div id="part_javascript">
+          <div class="top">
+            <!--"top", parte de cima do documento-->
+            <div class="img">
+              <!--Imagem da parte html-->
+              <img
+                src="assets/images/Website Creator-bro.png"
+                alt=""
+                height="292px"
+              />
+            </div>
+            <div class="txt">
+              <!--Texto da parte html-->
+              <p>
+                Seu site merece mais do que apenas HTML e CSS. Aprenda
+                JavaScript e leve-o para o próximo nível de funcionalidade e
+                interatividade!
+              </p>
+            </div>
+          </div>
+          <div class="low">
+            <!--"low", parte de baixo do documento - listas-->
+            <div class="title">
+              <h1>O que te <span class="color">espera</span></h1>
+            </div>
+            <div class="list">
+              <ul class="content-list">
+                <li>Variáveis e Tipos de Dados</li>
+                <li>Operadores e Estruturas de Controle</li>
+                <li>Funções e Escopo</li>
+                <li>Arrays e Objetos</li>
+                <li>Manipulação do DOM e Eventos</li>
+                <li>Assincronismo e Promessas</li>
+                <li>ES6+ Features</li>
+                <li>Frameworks e Bibliotecas</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="btn-part-front">
+          <button class="btn-front">Ver planos</button>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <!--Faz parte da 4° página-->
+    </footer>
+    <script src="js/main.js"></script>
+  </body>
+</html>

@@ -17,6 +17,19 @@ const UserSchema = new Schema({
     bio: {
         type: String,
     },
+    isEmailVerified: {
+        type: Boolean,
+        default: false
+    },
+
+    emailVerificationToken: {
+        token: {
+            type: String
+        },
+        expires: {
+            type: Date
+        }
+    },
     role: {
         type: String,
         enum: ['admin', 'user', 'professor'],

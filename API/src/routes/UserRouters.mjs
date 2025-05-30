@@ -3,7 +3,15 @@ const routerUser = express.Router();
 
 
 //Controllers
-import { getCurrentUser, register, updateUser, getUserById } from "../controllers/UserController.mjs";
+import { 
+    getCurrentUser, 
+    register, 
+    updateUser, 
+    getUserById, 
+    verifyEmail,
+    resendTokenValidation
+} from "../controllers/UserController.mjs";
+
 import { login } from "../controllers/UserController.mjs";
 
 //Middlewares
@@ -22,7 +30,12 @@ routerUser.get('/profile', authGuard, getCurrentUser)
 
 routerUser.put('/updateUser', authGuard, userUpdateValidation(), validate, updateUser)
 
-routerUser.get('/:id', getUserById)
+routerUser.get('/verify-email/:token', verifyEmail)
+
+routerUser.post('/resend-validation', resendTokenValidation)
+
+routerUser.get('/getUser/:id', getUserById)
+
 
 
 export default routerUser;

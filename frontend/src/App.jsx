@@ -6,7 +6,6 @@ import { Register } from './pages/login_register/register/Register'
 
 //Bibliotecas
 import {BrowserRouter, Routes, Route} from "react-router-dom"
-import {} from ""
 function App() {
 
   return (

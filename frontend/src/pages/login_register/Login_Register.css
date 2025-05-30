@@ -20,6 +20,7 @@
     background-color: rgba(255, 255, 255, 0.781);
     border-radius: 10px;
     box-shadow: 11px 12px 15px var(--detail);
+    color: black;
 }
 
 .imgBlob{

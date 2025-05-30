@@ -2,6 +2,7 @@ import User from "../models/User.mjs";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
 dotenv.config();
 
 const jwtSecret = process.env.JWT_SECRET;
@@ -87,4 +88,60 @@ export const getCurrentUser = async (req, res) => {
     const user = req.user
     console.log(user)
     res.status(200).json(user)
+}
+
+
+//Rota para atualizar usuário
+export const updateUser = async (req, res) => {
+    const { nome, bio, password } = req.body
+
+    try{
+        const reqUser = req.user
+        const user = await User.findById(reqUser._id).select("-password")
+
+        //Atualizando nome
+        if(nome){
+            user.nome = nome
+        }
+
+        //Atualizando senha
+        if(password){
+            const salt = await bcrypt.genSalt()
+            const newHashPass = await bcrypt.hash(password, salt)
+            user.password = newHashPass
+        }
+
+        if(bio){
+            user.bio = bio
+        }
+
+        await user.save()
+
+        res.status(200).json(user)
+
+    }
+    catch(error){
+        res.status(500).json({msg: "Erro interno do servidor!"})
+        console.log(error)
+    }
+}
+
+//Rota de resgate de usuário pelo ID
+export const getUserById = async (req, res) => {
+    const { id } = req.params
+
+    try{
+        const user = await User.findById(id).select("-password")
+
+        if(!user){
+            return res.status(404).json({errors: ["Usuário não encontrado!"]})
+        }
+
+        res.status(200).json(user)
+
+    }
+    catch(error){
+        res.status(500).json({msg: "Erro interno do servidor!"})
+        console.log(error)
+    }
 }

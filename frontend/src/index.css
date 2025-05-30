@@ -21,3 +21,34 @@ body{
   background-color: var(--background-color);
   color: white;
 }
+
+.successMsg{
+    color: rgb(2 167 2);
+    font-weight: bold;
+    background-color: #ffffff9e;
+    font-size: 1vw;
+    padding: 0 !important;
+    border-radius: 10px;
+    padding: 1vw !important
+}
+
+.errorMsg{
+  color: rgb(255, 66, 66);
+  font-weight: bold;
+  font-size: 1vw;
+  padding: 0 !important;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    gap: 2vw;
+}
+
+@media(max-width: 740px){
+  .errorMsg{
+    font-size: 18px;
+  }
+}

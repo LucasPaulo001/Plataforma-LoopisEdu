@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect, useContext } from "react"
+import { Navigate } from "react-router-dom"
 
 const AuthContext = createContext()
 
@@ -14,6 +15,8 @@ export const AuthProvider = ({children}) => {
     const [errors, setErrors] = useState([])
     const [loading, setLoading] = useState(false)
     const [token, setToken] = useState(null)
+    const [showResend, setShowResend] = useState(null)
+    const [emailResend, setEmailResend] = useState(null)
 
     //Resgatando token do localStorage
     useEffect(() => {
@@ -39,12 +42,17 @@ export const AuthProvider = ({children}) => {
 
             const data = await res.json()
             console.log(data._id)
+
             if(!res.ok){
-                setLoading(false)
+                console.log(data)
+                if(data.resend){
+                    setShowResend(true)
+                    setEmailResend(email)
+                }
                 return setErrors(data.errors || [])
             }
-            console.log(data)
-            
+            console.log(data.errors)
+        
 
             setUsuario({ _id: data._id })
             setToken(data.token)
@@ -53,7 +61,7 @@ export const AuthProvider = ({children}) => {
 
         }
         catch(error){
-            setErrors([{errors: ["Erro ao fazer login, tente novamente mais tarde!"]}])
+            setErrors([{ msg: "Erro ao fazer cadastro!" }])
             console.log(error)
         }
         finally{
@@ -64,6 +72,7 @@ export const AuthProvider = ({children}) => {
     //Função de registro de usuários
     const register = async (nome, email, password, confirmPass) => {
         try{
+            setErrors([])
             setLoading(true)
             const res = await fetch(apiRegister, {
                 method: "POST",
@@ -76,13 +85,15 @@ export const AuthProvider = ({children}) => {
             const data = await res.json()
 
             if(!res.ok){
-                return setErrors(errors || [])
+                return setErrors(data.errors || [])
             }
 
-            setSuccessMsg("Cadastro feito com sucesso!")
+
+            setSuccessMsg(`Cadastro feito com sucesso! enviamos um E-mail de validação!`)
+            return true
         }
         catch(error){
-            setErrors([{errors: ["Erro ao fazer cadastro!"]}])
+            setErrors([{ msg: "Erro ao fazer cadastro!" }])
             console.log(error)
         }
         finally{
@@ -99,7 +110,7 @@ export const AuthProvider = ({children}) => {
 
 
     return(
-        <AuthContext.Provider value={{login, usuario, token, loading, register, successMsg, errors, logout}}>
+        <AuthContext.Provider value={{login, usuario, setErrors, token, loading, register, setSuccessMsg,  successMsg, errors, logout, setShowResend, showResend, emailResend}}>
             {children}
         </AuthContext.Provider>
     )

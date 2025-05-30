@@ -1,0 +1,252 @@
+.container{
+    height: 100vh;
+    padding: 2vw;
+    display: flex;
+    gap: .5vw;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.login_register{
+    width: 65%;
+    height: 100%;
+    padding: 3.5vw;
+    display: flex;
+    backdrop-filter: blur(2px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgba(255, 255, 255, 0.781);
+    border-radius: 10px;
+    box-shadow: 11px 12px 15px var(--detail);
+}
+
+.imgBlob{
+    position: absolute;
+    top: 66px;
+    height: 239px;
+    width: 100%;
+    object-fit: contain;
+    left: 0;
+    opacity: .4;
+    z-index: -99;
+}
+
+.login_register form{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 1vw;
+}
+
+.login_register span{
+    padding: 2vw;
+}
+
+.localInput{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1vw;
+    position: relative;
+}
+
+.localInput input{
+    outline: none;
+    background-color: transparent;
+    width: 100%;
+    height: 40px;
+    text-indent: 2em;
+    font-size: 1.5vw;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--detail);
+    transition: .4s ease-in-out;
+}
+
+.localInput svg{
+    position: absolute;
+    bottom: 10px;
+    font-size: 2vw;
+}
+
+.localInput input:focus{
+    border-bottom: solid 1px rgb(255, 70, 255);
+}
+
+.localInput svg{
+    color: var(--separator-color);
+}
+
+.btns{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2vw;
+    align-items: center;
+}
+
+.container button{
+    height: 40px;
+    border-radius: 10px;
+    width: 50%;
+    border: 2px solid var(--separator-color);
+    font-weight: bold;
+    color: var(--separator-color);
+    background-color: transparent;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.login_register a{
+    color: var(--background-color);
+    font-weight: bold;
+}
+
+.container button:hover{
+    background-color: var(--separator-color);
+    border: none;
+    color: white;
+}
+
+.txt-animado{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#is{
+    color: var(--detail);
+}
+
+.content-text-animate{
+    align-items: center;
+    display: flex;
+    font-size: 3vw;
+    gap: 2vw;
+}
+
+.content-txt{
+    align-items: center;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.content-image{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-image img{
+    height: 100px;
+}
+
+.content-text-animate p{
+    font-weight: bold;
+    color: white;
+}
+
+.txt-animado{
+    font-size: 3vw;
+    font-weight: bold;
+    background-color: var(--background-color);
+}
+
+.txt-animado span{
+    position: relative;
+    width: 100%;
+    font-family: "Fira Code", monospace;
+}
+
+.txt-animado span::before{
+    content: "";
+    color: white;
+    animation: word 25s infinite;
+}
+
+.txt-animado span::after{
+    content: "";
+    position: absolute;
+    height: 100%;
+    right: 0px;
+    border-left: 3px solid #1f6feb;
+    animation: cursor .8s ease-in-out infinite, digit 25s steps(20, end) infinite;
+    background-color: var(--background-color);
+    width: 100%;
+}
+
+@keyframes digit {
+    10%, 15%, 30%, 35%, 50%, 55%, 70%, 75%, 90%, 95%{
+        width: 0;
+    }
+
+    5%, 20%, 25%, 40%, 45%, 60%, 65%, 80%, 85%{
+        width: 100%;
+    }
+}
+
+@keyframes cursor {
+    0%{
+        border-left: 3px solid #0d1117;
+    }
+    
+}
+
+@keyframes word {
+    0%, 20%{
+        content: "Tech.";
+    }
+    21%, 40%{
+        content: "Creative.";
+    }
+    41%, 60%{
+        content: "Style.";
+    }
+    61%, 80%{
+        content: "Future.";
+    }
+    81%, 100%{
+        content: "Edu :)";
+    }
+}
+
+@media(max-width: 740px){
+    .login_register{
+        width: 90%;
+        height: 75%;
+    }
+
+    .localInput input{
+        text-indent: 2em;
+        font-size: 4vw;
+    }
+
+    .localInput svg{
+        font-size: 6vw;
+    }
+
+    .container{
+        justify-content: space-evenly;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .txt-animado, .content-text-animate{
+        font-size: 7vw;
+    }
+
+    .imgBlob{
+        display: none;
+    }
+
+    .container img{
+        height: 30px;
+    }
+
+}

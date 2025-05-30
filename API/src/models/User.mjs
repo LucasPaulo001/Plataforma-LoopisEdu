@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose"
+import mongoose, { Schema } from "mongoose";
 
 const UserSchema = new Schema({
     nome: {
@@ -14,6 +14,9 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    bio: {
+        type: String,
+    },
     role: {
         type: String,
         enum: ['admin', 'user', 'professor'],
@@ -21,4 +24,4 @@ const UserSchema = new Schema({
     }
 }, { timestamps: true })
 
-export default mongoose.connect("User", UserSchema)
+export default mongoose.model("User", UserSchema);

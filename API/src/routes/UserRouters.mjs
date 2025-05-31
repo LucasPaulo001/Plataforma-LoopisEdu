@@ -1,5 +1,6 @@
 import express from "express";
 const routerUser = express.Router();
+import jwt from "jsonwebtoken"
 
 
 //Controllers
@@ -20,6 +21,7 @@ import { userCreateValidation } from "../middlewares/userValidations.mjs";
 import { userLoginValidation } from "../middlewares/userValidations.mjs";
 import { authGuard } from "../middlewares/authGuard.mjs";
 import { userUpdateValidation } from "../middlewares/userValidations.mjs";
+import passport from "passport";
 
 //Rotas
 routerUser.post('/register', userCreateValidation(), validate, register);
@@ -36,6 +38,27 @@ routerUser.post('/resend-validation', resendTokenValidation)
 
 routerUser.get('/getUser/:id', getUserById)
 
+//google
+
+routerUser.get("/google", passport.authenticate("google", {scope: ["profile", "email"] }))
+
+routerUser.get("/google/callback",
+    passport.authenticate("google", { failureRedirect: "http://localhost:5173/login" }),
+    (req, res) => {
+        const token = jwt.sign({id: req.user._id}, process.env.JWT_SECRET, { expiresIn: "7d" })
+        res.redirect(`http://localhost:5173/loopisEdu?token=${token}`)
+    }
+)
+
+
+//Github
+routerUser.get("/github/callback",
+    passport.authenticate("github", { failureRedirect: "http://localhost:5173/api/users/login" }),
+    (req, res) => {
+        const token = jwt.sign({id: req.user._id}, process.env.JWT_SECRET, { expiresIn: "7d" })
+        res.redirect(`http://localhost:5173/loopisEdu?token=${token}`)
+    }
+)
 
 
 export default routerUser;

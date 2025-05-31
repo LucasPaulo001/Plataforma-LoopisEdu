@@ -18,11 +18,11 @@ passport.deserializeUser(async (id, done) => {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID_GOOGLE,
     clientSecret: process.env.CLIENT_SECRET_GOOGLE,
-    callbackUrl: "http://localhost:8080/api/users/google/callback"
+    callbackURL: "http://localhost:8080/api/users/google/callback"
 }, async (accessToken, refreshToken, profile, done) => {
-    try{
-        let user = await User.findOne({googleId: profile.id})
-        if(!user){
+    try {
+        let user = await User.findOne({ googleId: profile.id })
+        if (!user) {
             user = await User.create({
                 nome: profile.displayName,
                 googleId: profile.id,
@@ -31,8 +31,8 @@ passport.use(new GoogleStrategy({
         }
         return done(null, user)
     }
-    catch(error){
-        return done (error, null)
+    catch (error) {
+        return done(error, null)
     }
 }))
 
@@ -40,20 +40,27 @@ passport.use(new GoogleStrategy({
 passport.use(new GitHubStrategy({
     clientID: process.env.CLIENT_ID_GITHUB,
     clientSecret: process.env.CLIENT_SECRET_GITHUB,
-    callbackURL: "http://localhost:8080/api/users/github/callback"
+    callbackURL: "http://localhost:8080/api/users/github/callback",
+    scope: ["user:email"]
 }, async (accessToken, refreshToken, profile, done) => {
-    try{
-        let user = await User.findOne({githubId: profile.id})
-        if(!user){
+    try {
+        const email = profile.emails?.[0]?.value
+
+        if (!email) {
+            return done(new Error("O GitHub não retornou um e-mail. Vá nas configurações da sua conta GitHub e torne o e-mail visível ou público."), null);
+        }
+        
+        let user = await User.findOne({ githubId: profile.id })
+        if (!user) {
             user = await User.create({
                 nome: profile.displayName || profile.username,
-                githubId:profile.id,
+                githubId: profile.id,
                 email: profile.emails?.[0].value || ''
             })
         }
         return done(null, user)
     }
-    catch(err){
+    catch (err) {
         return done(err, null)
     }
 }))

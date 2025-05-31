@@ -1,4 +1,5 @@
 import './App.css'
+import { OauthRedirect } from './components/OauthRedirect'
 import { useAuth } from './contexts/authContext'
 import { Home } from './pages/home/Home'
 
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/login" element={!token ? <Login /> : <Navigate to={'/loopisEdu'} />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/oauth-redirect' element={<OauthRedirect />} />
           <Route path='/loopisEdu' element={!token ? <Navigate to={'/login'} /> : <Home />} />
           {!token && <Route path="*" element={<Navigate to="/login" />} />}
         </Routes>

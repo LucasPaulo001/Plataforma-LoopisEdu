@@ -9,7 +9,7 @@ const apiRegister = 'http://localhost:8080/api/users/register'
 
 
 //Provider de autênticação
-export const AuthProvider = ({children}) => {
+export const AuthProvider = ({ children }) => {
     const [usuario, setUsuario] = useState({})
     const [successMsg, setSuccessMsg] = useState("")
     const [errors, setErrors] = useState([])
@@ -21,14 +21,15 @@ export const AuthProvider = ({children}) => {
     //Resgatando token do localStorage
     useEffect(() => {
         const usertoken = localStorage.getItem("token")
-        if(usertoken){
+        if (usertoken) {
             setToken(usertoken)
+            fetchUserFromToken(usertoken) //Resgatando no caso de login com google ou github
         }
     }, [])
 
     //Função de login
     const login = async (email, password) => {
-        try{
+        try {
             setErrors([])
             setLoading(true)
 
@@ -43,35 +44,36 @@ export const AuthProvider = ({children}) => {
             const data = await res.json()
             console.log(data._id)
 
-            if(!res.ok){
+            if (!res.ok) {
                 console.log(data)
-                if(data.resend){
+                if (data.resend) {
                     setShowResend(true)
                     setEmailResend(email)
                 }
                 return setErrors(data.errors || [])
             }
             console.log(data.errors)
-        
+
 
             setUsuario({ _id: data._id })
             setToken(data.token)
             localStorage.setItem("token", data.token)
+            await fetchUserFromToken(data.token)
 
 
         }
-        catch(error){
+        catch (error) {
             setErrors([{ msg: "Erro ao fazer cadastro!" }])
             console.log(error)
         }
-        finally{
+        finally {
             setLoading(false)
         }
     }
 
     //Função de registro de usuários
     const register = async (nome, email, password, confirmPass) => {
-        try{
+        try {
             setErrors([])
             setLoading(true)
             const res = await fetch(apiRegister, {
@@ -84,7 +86,7 @@ export const AuthProvider = ({children}) => {
 
             const data = await res.json()
 
-            if(!res.ok){
+            if (!res.ok) {
                 return setErrors(data.errors || [])
             }
 
@@ -92,12 +94,36 @@ export const AuthProvider = ({children}) => {
             setSuccessMsg(`Cadastro feito com sucesso! enviamos um E-mail de validação!`)
             return true
         }
-        catch(error){
+        catch (error) {
             setErrors([{ msg: "Erro ao fazer cadastro!" }])
             console.log(error)
         }
-        finally{
+        finally {
             setLoading(false)
+        }
+    }
+    
+    //Funão para resgatar usuário
+    const fetchUserFromToken = async (token) => {
+
+        try {
+            const apiGetUser = `http://localhost:8080/api/users/me`
+
+            const res = await fetch(apiGetUser, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    'Content-type': 'application/json'
+                }
+            })
+
+            const data = await res.json()
+
+            if (res.ok) {
+                setUsuario(data)
+            }
+        }
+        catch (error) {
+            setErrors([{ msg: "Erro ao buscar dados de usuário!" }])
         }
     }
 
@@ -109,9 +135,26 @@ export const AuthProvider = ({children}) => {
     }
 
 
-    return(
-        <AuthContext.Provider value={{login, usuario, setErrors, token, loading, register, setSuccessMsg,  successMsg, errors, logout, setShowResend, showResend, emailResend}}>
+    return (
+        <AuthContext.Provider
+            value={{
+                login,
+                usuario,
+                setErrors,
+                token,
+                loading,
+                register,
+                setSuccessMsg,
+                successMsg,
+                errors,
+                logout,
+                setShowResend,
+                showResend,
+                emailResend,
+            }}>
+
             {children}
+
         </AuthContext.Provider>
     )
 }

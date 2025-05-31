@@ -262,17 +262,14 @@ export const resendTokenValidation = async (req, res) => {
 }
 
 //Rota de resgate de usuário pelo ID
-export const getUserById = async (req, res) => {
-    const { id } = req.params
-
+export const getMe = async (req, res) => {
     try {
-        const user = await User.findById(id).select("-password")
 
-        if (!user) {
+        if (!req.user) {
             return res.status(404).json({ errors: ["Usuário não encontrado!"] })
         }
 
-        res.status(200).json(user)
+        res.status(200).json(req.user)
 
     }
     catch (error) {

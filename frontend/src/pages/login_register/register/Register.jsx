@@ -37,7 +37,7 @@ export const Register = () => {
                 <div className="content-image">
                     <img src={logo} alt="" />
                 </div>
-                <div className="login_register" id="login">
+                <div className="login_register" id="register">
                     <form onSubmit={handleSubmit}>
                         <div className="localInput">
                             <label htmlFor="username">Nome:</label>

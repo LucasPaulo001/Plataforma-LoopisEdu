@@ -8,7 +8,7 @@ import {
     getCurrentUser, 
     register, 
     updateUser, 
-    getUserById, 
+    getMe, 
     verifyEmail,
     resendTokenValidation
 } from "../controllers/UserController.mjs";
@@ -36,27 +36,29 @@ routerUser.get('/verify-email/:token', verifyEmail)
 
 routerUser.post('/resend-validation', resendTokenValidation)
 
-routerUser.get('/getUser/:id', getUserById)
+routerUser.get('/me', authGuard, getMe)
 
 //google
 
 routerUser.get("/google", passport.authenticate("google", {scope: ["profile", "email"] }))
 
 routerUser.get("/google/callback",
-    passport.authenticate("google", { failureRedirect: "http://localhost:5173/login" }),
+    passport.authenticate("google", { failureRedirect: "http://localhost:5173/api/users/login" }),
     (req, res) => {
         const token = jwt.sign({id: req.user._id}, process.env.JWT_SECRET, { expiresIn: "7d" })
-        res.redirect(`http://localhost:5173/loopisEdu?token=${token}`)
+        res.redirect(`http://localhost:5173/oauth-redirect?token=${token}`)
     }
 )
 
 
 //Github
+routerUser.get("/github", passport.authenticate("github", {scope: ["user:email"]}) )
+
 routerUser.get("/github/callback",
     passport.authenticate("github", { failureRedirect: "http://localhost:5173/api/users/login" }),
     (req, res) => {
         const token = jwt.sign({id: req.user._id}, process.env.JWT_SECRET, { expiresIn: "7d" })
-        res.redirect(`http://localhost:5173/loopisEdu?token=${token}`)
+        res.redirect(`http://localhost:5173/oauth-redirect?token=${token}`)
     }
 )
 

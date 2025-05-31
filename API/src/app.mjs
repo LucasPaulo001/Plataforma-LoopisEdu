@@ -4,11 +4,24 @@ import cors from "cors";
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from "dotenv";
+import session from "express-session"
+import passport from "passport";
+import "./settings/passport/passport.mjs"
 
 //Config. dependências
 const app = express();
 app.use(cors());
 dotenv.config();
+
+
+app.use(session({
+    secret: process.env.SECRET_SESSION,
+    resave: false,
+    saveUninitialized: false
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Configuração de banco de dados
 import connectToDatabase from "./settings/database/dbConnection.mjs";

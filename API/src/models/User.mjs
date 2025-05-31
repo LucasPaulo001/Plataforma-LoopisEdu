@@ -4,7 +4,6 @@ const UserSchema = new Schema({
     nome: {
         type: String,
         required: true,
-        unique: true
     },
     email: {
         type: String,
@@ -12,7 +11,7 @@ const UserSchema = new Schema({
     },
     password: {
         type: String,
-        required: true
+        required: false
     },
     bio: {
         type: String,
@@ -30,6 +29,8 @@ const UserSchema = new Schema({
             type: Date
         }
     },
+    googleId: String,
+    githubId: String,
     role: {
         type: String,
         enum: ['admin', 'user', 'professor'],

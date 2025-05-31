@@ -1,0 +1,114 @@
+:root {
+    --secondary-color: #9967ff;
+    --detail: #a578ff;
+    --background-color: #121668;
+    --secondary-background-color: #06163a;
+    --separator-color: #163b99;
+    --white: white;
+    --background-modal-profile: #02031abd;
+    --danger: rgb(255, 61, 61);
+}
+
+
+.modalProfile {
+    position: fixed;
+    height: 100vh;
+    width: 50%;
+    right: 0;
+    background-color: var(--background-modal-profile);
+    top: 0;
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    padding: 2vw;
+    clip-path: polygon(0% 0%, 90% 0%, 100% 0%, 100% 100%, 10% 100%, 0% 90%);
+    box-shadow: inset -6px -3px 11px var(--secondary-color);;
+}
+
+.logoutBtn {
+    background-color: var(--danger);
+    width: 50%;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.8vw;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5vw;
+    clip-path: polygon(0 0, 80% 0%, 100% 50%, 85% 100%, 0% 100%);
+    border-radius: 0;
+    transition: .4s ease-in-out;
+}
+
+.logoutBtn:hover {
+  background-color: var(--separator-color);
+  color: var(--white);
+  box-shadow: 0 0 10px var(--detail);
+}
+
+.content {
+    width: 80%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: var(--background-modal-profile);
+    border-radius: 20px;
+    clip-path: polygon(0% 0%, 90% 0%, 100% 10%, 100% 100%, 10% 100%, 0% 90%);
+    border: 2px solid var(--detail);
+    transition: 0.3s ease-in-out;
+}
+
+.content ul li{
+    border: 1px solid var(--detail);
+    border-radius: 5px;
+    padding: .4vw;
+    transition: .4s ease-in-out;
+    display: grid;
+    grid-template-columns: 10% 90%;
+    justify-content: space-between;
+    justify-items: center;
+    align-items: center;
+    
+}
+
+.content ul {
+    width: 90%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+    
+}
+
+.content ul li:hover {
+    border: 1px solid var(--separator-color);
+}
+
+.content ul a li {
+    font-size: 1.5vw;
+}
+
+.closeProfile {
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding: 1vw;
+    color: red;
+    left: 0;
+    font-size: 2vw;
+    cursor: pointer;
+}
+
+.logoutBtn:hover ~ .content{
+    border: 2px solid red;
+}

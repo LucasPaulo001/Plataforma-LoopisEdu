@@ -24,7 +24,9 @@ export const Home = () => {
 
     return (
         <>
-            <h1>Bem vindo(a) à Loopis Edu, {usuario.nome}</h1>
+            <div className="heroPage">
+                <h1>Bem vindo(a), {usuario.nome}</h1>
+            </div>
         </>
     )
 }

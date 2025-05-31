@@ -1,0 +1,142 @@
+:root {
+    --secondary-color: #9967ff;
+    --detail: #a578ff;
+    --background-color: #121668;
+    --secondary-background-color: #06163a;
+    --separator-color: #163b99;
+    --white: white;
+}
+
+.navbar {
+    border-bottom: 4px solid var(--detail);
+    display: grid;
+    grid-template-columns: 1fr 1fr 50% 1fr;
+    justify-content: start;
+    column-gap: 2vw;
+    align-items: center;
+    justify-items: center;
+}
+
+.navbar .logo {
+    height: 30px;
+}
+
+.navbar .logo a {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+
+.link {
+    display: flex;
+    align-items: center;
+    gap: .5vw;
+    transition: .2s ease-in-out;
+}
+
+.link:hover {
+    color: var(--detail);
+}
+
+.links {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+}
+
+.links ul li {
+    font-size: 1.2vw;
+}
+
+.navbar .links ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.localProfile ul li {
+    list-style: none;
+    cursor: pointer;
+}
+
+.navbar .logo a img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.profile {
+    font-size: 3.5vw;
+}
+
+.navbar .links ul li {
+    list-style: none;
+    border-bottom: solid 4px transparent;
+}
+
+#destaq {
+    color: var(--detail);
+    font-weight: bold;
+}
+
+.ativeLogo {
+    border-bottom: 3px solid transparent !important;
+    box-shadow: none !important;
+}
+
+.profileLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .4s ease-in-out;
+}
+
+.commonLink .active {
+    border-bottom: solid 3px var(--detail) !important;
+    box-shadow: none !important;
+}
+
+.active {
+    border-bottom: 4px solid var(--detail);
+    width: auto;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+
+.search form input{
+    height: 30px;
+    border: 2px solid var(--detail);
+    outline: none;
+    background-color: transparent;
+    color: white;
+    text-indent: 5px;
+    padding: 1.1vw;
+}
+
+.inputSearch{
+    position: relative;
+}
+
+.inputSearch svg{
+    position: absolute;
+    right: 5px;
+    bottom: 10px;
+}
+
+.search form input::placeholder{
+    color: var(--detail);
+    opacity: .5;
+}

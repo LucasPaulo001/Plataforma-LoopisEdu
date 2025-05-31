@@ -12,6 +12,8 @@ export const OauthLogin = () => {
     }
 
     return(
+
+        //Botões de login (Google e GitHub)
         <div className="btnGG">
             <button onClick={handleLoginGoogle}>
                 <BsGoogle />

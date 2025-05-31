@@ -4,7 +4,7 @@ import { BsEnvelope, BsLock } from "react-icons/bs"
 import { Link, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { useAuth } from "../../../contexts/authContext"
-import { OauthLogin } from "../../../components/OauthLogin"
+import { OauthLogin } from "../../../components/oauth/OauthLogin"
 
 const apiResend = 'http://localhost:8080/api/users/resend-validation'
 

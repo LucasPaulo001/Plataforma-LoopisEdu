@@ -3,6 +3,7 @@ import { OauthRedirect } from './components/oauth/OauthRedirect'
 import { useAuth } from './contexts/authContext'
 import { Home } from './pages/home/Home'
 import { Navbar } from "./components/navbar/Navbar";
+import { Profile } from './pages/profile/Profile';
 
 //Componentes
 import { Login } from './pages/login_register/login/Login'
@@ -24,6 +25,7 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/course' element={!token ? <Navigate to={'/login'} /> : <Capacitations />} />
           <Route path='/oauth-redirect' element={<OauthRedirect />} />
+          <Route path='/profile' element={!token ? <Navigate to={'/login'} /> : <Profile />} />
           <Route path='/loopisEdu' element={!token ? <Navigate to={'/login'} /> : <Home />} />
           {!token && <Route path="*" element={<Navigate to="/login" />} />}
         </Routes>

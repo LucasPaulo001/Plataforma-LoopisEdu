@@ -33,8 +33,28 @@ const UserSchema = new Schema({
     githubId: String,
     role: {
         type: String,
-        enum: ['admin', 'user', 'professor'],
-        default: 'user'
+        enum: [
+            'Presidente',
+            'Vice-Presidente', 
+            'Diretor de Projetos',
+            'Diretor de RH',
+            'Diretor de Comercial',
+            'Diretor de Marketing',
+            'Trainee',
+            'Membro',
+            'admin'
+        ],
+        default: 'Membro'
+    },
+    setores: {
+        type: [String],
+        enum: [
+            'Projetos',
+            'Comercial',
+            'Marketing',
+            'Recursos Humanos',
+        ],
+        default: []
     }
 }, { timestamps: true })
 

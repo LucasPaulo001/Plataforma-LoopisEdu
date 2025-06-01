@@ -1,6 +1,19 @@
-.heroPage{
+:root {
+    --secondary-color: #9967ff;
+    --detail: #a578ff;
+    --background-color: #121668;
+    --secondary-background-color: #06163a;
+    --separator-color: #163b99;
+    --white: white;
+}
+
+
+.heroPage {
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: center;
     height: 20vh;
+    background-color: var(--separator-color);
+    border-bottom: 1px solid var(--detail);
 }

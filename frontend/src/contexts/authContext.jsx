@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useContext } from "react"
 import { Navigate } from "react-router-dom"
 
-const AuthContext = createContext()
+export const AuthContext = createContext()
 
 //Endpoints de login e cadastro do backend
 const apiLogin = 'http://localhost:8080/api/users/login'
@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }) => {
 
         }
         catch (error) {
-            setErrors([{ msg: "Erro ao fazer cadastro!" }])
+            setErrors([{ msg: "Erro ao fazer login!" }])
             console.log(error)
         }
         finally {
@@ -103,8 +103,8 @@ export const AuthProvider = ({ children }) => {
         }
     }
     
-    //Funão para resgatar usuário
-    const fetchUserFromToken = async (token) => {
+    //Função para resgatar usuário
+    const fetchUserFromToken = async () => {
 
         try {
             const apiGetUser = `http://localhost:8080/api/users/me`
@@ -140,6 +140,7 @@ export const AuthProvider = ({ children }) => {
             value={{
                 login,
                 usuario,
+                setUsuario,
                 setErrors,
                 token,
                 loading,

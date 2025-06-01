@@ -24,7 +24,7 @@ const generateTokenValidation = () => {
 
 //Rota de cadastro
 export const register = async (req, res) => {
-    const { nome, email, password } = req.body
+    const { nome, email, password, confirmPass } = req.body
 
     try {
 
@@ -132,6 +132,7 @@ export const login = async (req, res) => {
     }
     catch (error) {
         res.status(500).json({ msg: "Erro interno do servidor!" })
+        console.log(error)
     }
 }
 
@@ -145,21 +146,21 @@ export const getCurrentUser = async (req, res) => {
 
 //Rota para atualizar usuário
 export const updateUser = async (req, res) => {
-    const { nome, bio, password } = req.body
+    const { nomeEdited, bio, passwordEdited } = req.body
 
     try {
         const reqUser = req.user
         const user = await User.findById(reqUser._id).select("-password")
 
         //Atualizando nome
-        if (nome) {
-            user.nome = nome
+        if (nomeEdited) {
+            user.nome = nomeEdited
         }
 
         //Atualizando senha
-        if (password) {
+        if (passwordEdited) {
             const salt = await bcrypt.genSalt()
-            const newHashPass = await bcrypt.hash(password, salt)
+            const newHashPass = await bcrypt.hash(passwordEdited, salt)
             user.password = newHashPass
         }
 

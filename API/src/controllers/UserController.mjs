@@ -2,7 +2,7 @@ import User from "../models/User.mjs";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import nodemailer from "nodemailer"
+import nodemailer, { createTransport } from "nodemailer"
 import crypto from "crypto"
 dotenv.config();
 
@@ -113,9 +113,14 @@ export const login = async (req, res) => {
             return res.status(422).json({ errors: ["Usuário não encontrado!"] })
         }
 
+        if(!user.active){
+            return res.status(422).json({ errors: ["Você não tem mais acesso ao sistema!"] })
+        }
+
         //Verifica se o email está validado
         if(!user.isEmailVerified){
-            return res.status(422).json({errors: ["Por favor valide seu E-mail, para fazer o login!"], resend: true})
+            return res.status(422).json({errors: ["Por favor valide seu E-mail, para fazer o login!"], 
+            resend: true})
         }
 
         //Verificando se a senha está correta
@@ -276,5 +281,57 @@ export const getMe = async (req, res) => {
     catch (error) {
         res.status(500).json({ msg: "Erro interno do servidor!" })
         console.log(error)
+    }
+}
+
+//Rota de listagem de usuário - Hierarquia
+export const listEmployee = async (req, res) => {
+    try{
+
+        const users = await User.find().select("-password")
+
+        const employee = users.filter(user => !user.role.includes("Membro"))
+
+        res.status(200).json({ employee })
+
+    }
+    catch(error){
+        res.status(500).json({ msg: "Erro interno do servidor!" })
+        console.log(error)
+    }
+}
+
+//Rota para enviar feedback sobre a aplicação
+export const feedback = async (req, res) => {
+    
+    const { userEmail, userName, content } = req.body
+
+    try{
+
+        const transporter = createTransport({
+            service: "gmail",
+            auth: {
+                user: process.env.USER_EMAIL,
+                pass: process.env.PASS_APP
+            }
+        })
+
+        const contentFeedBack = transporter.sendMail({
+            from: userEmail,
+            to: process.env.USER_EMAIL,
+            subject: "Feedback sobre o sistema",
+
+            html: `
+                <h3>O que <strong>${userName}</strong> acha do sistema: </h3> <br>
+                <hr>
+                <p>${content}</p>
+            `
+        })
+
+        return res.status(200).json({ msg: "Obrigado por nos ajudar a melhorar!" })
+
+    }
+    catch(error){
+        res.status(500).json({ msg: "Erro interno do servidor!" })
     }
 }

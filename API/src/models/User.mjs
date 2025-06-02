@@ -21,6 +21,11 @@ const UserSchema = new Schema({
         default: false
     },
 
+    active: {
+        type: Boolean,
+        default: true
+    },
+
     emailVerificationToken: {
         token: {
             type: String

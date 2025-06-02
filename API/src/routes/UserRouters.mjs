@@ -10,7 +10,9 @@ import {
     updateUser, 
     getMe, 
     verifyEmail,
-    resendTokenValidation
+    resendTokenValidation,
+    listEmployee,
+    feedback
 } from "../controllers/UserController.mjs";
 
 import { login } from "../controllers/UserController.mjs";
@@ -23,7 +25,7 @@ import { authGuard } from "../middlewares/authGuard.mjs";
 import { userUpdateValidation } from "../middlewares/userValidations.mjs";
 import passport from "passport";
 
-//Rotas
+//Rotas comuns a usuários
 routerUser.post('/register', userCreateValidation(), validate, register);
 
 routerUser.post('/login', userLoginValidation(), validate, login);
@@ -37,6 +39,11 @@ routerUser.get('/verify-email/:token', verifyEmail)
 routerUser.post('/resend-validation', resendTokenValidation)
 
 routerUser.get('/me', authGuard, getMe)
+
+routerUser.get('/listEmployee', authGuard, listEmployee)
+
+routerUser.get('/feedback', authGuard, feedback)
+
 
 //google
 

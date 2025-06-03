@@ -1,8 +1,10 @@
 import { useAuth } from "../../contexts/authContext"
 import { useUpdate } from "../../contexts/updateContext"
+import { Hierarchy } from "./ hierarchy/Hierarchy"
 import "./Profile.css"
 import { useState, useEffect } from "react"
 import { BsPerson, BsLock } from "react-icons/bs"
+import { AdminTools } from "./adminTools/AdminTools"
 
 export const Profile = () => {
     const { usuario } = useAuth()
@@ -33,12 +35,12 @@ export const Profile = () => {
             return
         }
 
-        if(nomeEdited.length < 3 || nomeEdited.length == 0){
+        if (nomeEdited.length < 3 || nomeEdited.length == 0) {
             setErrors(["O nome tem que ter no mínimo 3 caracteres"])
             return
         }
 
-        
+
         console.log(nomeEdited, passwordEdited)
 
         //Passando dados para o contexto
@@ -50,7 +52,7 @@ export const Profile = () => {
         setSuccess("")
     }, 7000)
 
-    
+
 
     if (!usuario) return <p>Carregando...</p>
 
@@ -82,6 +84,14 @@ export const Profile = () => {
                                 setSelect("faq")}>
                                 FAQ
                             </li>
+                            {
+                                usuario.role == "admin" && (
+                                    <li className={select === "adminTools" && "selected"} onClick={() =>
+                                        setSelect("adminTools")}>
+                                        AdminTools
+                                    </li>
+                                )
+                            }
 
                         </ul>
                     </div>
@@ -97,7 +107,7 @@ export const Profile = () => {
                         </div>
                         <div className="data">
                             {
-                                usuario.googleId ? (
+                                usuario.googleId || usuario.githubId ? (
                                     <form onSubmit={handleSubmit}>
                                         <div className="localInput">
                                             <label htmlFor="nome">Nome:</label>
@@ -158,6 +168,7 @@ export const Profile = () => {
 
                         <div className="menuProfile">
                             <h1>Tela de Hierarquia empresarial</h1>
+                            <Hierarchy />
                         </div>
                     )
                 }
@@ -170,6 +181,18 @@ export const Profile = () => {
                             <h1>Tela de FAQ</h1>
                         </div>
                     )
+                }
+                {
+                    usuario.role == "admin" ?
+                        select == "adminTools" && (
+                            <>
+                                <AdminTools />
+                            </>
+
+                        ) :
+                        (
+                            <></>
+                        )
                 }
             </div >
         </div >

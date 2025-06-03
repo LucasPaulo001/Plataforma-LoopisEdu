@@ -1,0 +1,27 @@
+:root {
+    --secondary-color: #9967ff;
+    --detail: #a578ff;
+    --background-color: #121668;
+    --secondary-background-color: #06163a;
+    --separator-color: #163b99;
+    --white: white;
+    --window: #0c0f53;
+}
+
+.container {
+    background-color: var(--background-color);
+    padding: 1vw;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 1em;
+    gap: 2vw;
+}
+
+.localEmployee{
+    text-align: center;
+}

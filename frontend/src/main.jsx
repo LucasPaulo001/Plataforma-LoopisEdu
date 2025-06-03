@@ -4,13 +4,16 @@ import './index.css'
 import App from './App.jsx'
 import { AuthProvider } from './contexts/authContext.jsx'
 import { UpdateProvider } from './contexts/updateContext.jsx'
+import { ProfileProvider } from './contexts/profileContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-      <UpdateProvider>
-        <App />
-      </UpdateProvider>
+      <ProfileProvider>
+        <UpdateProvider>
+          <App />
+        </UpdateProvider>
+      </ProfileProvider>
     </AuthProvider>
-  </StrictMode>,
+  </StrictMode>
 )

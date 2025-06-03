@@ -9,9 +9,13 @@ import { Profile } from './pages/profile/Profile';
 import { Login } from './pages/login_register/login/Login'
 import { Register } from './pages/login_register/register/Register'
 import { Capacitations } from './pages/capacitations/Capacitations';
+import { Feedback } from './pages/feedback/Feedback';
+import { ModalInfo } from './components/modalInfo/ModalInfo';
 
 //Bibliotecas
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom"
+
+
 
 function App() {
   const { token } = useAuth()
@@ -25,7 +29,9 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/course' element={!token ? <Navigate to={'/login'} /> : <Capacitations />} />
           <Route path='/oauth-redirect' element={<OauthRedirect />} />
+          <Route path='/feedback' element={!token ? <Navigate to={'/login'} /> : <Feedback /> } />
           <Route path='/profile' element={!token ? <Navigate to={'/login'} /> : <Profile />} />
+          <Route path='/admin/user/:id' element={<ModalInfo />} />
           <Route path='/loopisEdu' element={!token ? <Navigate to={'/login'} /> : <Home />} />
           {!token && <Route path="*" element={<Navigate to="/login" />} />}
         </Routes>

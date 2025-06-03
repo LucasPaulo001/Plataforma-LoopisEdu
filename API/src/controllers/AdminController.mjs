@@ -20,11 +20,19 @@ export const list_all_users = async (req, res) => {
 
 //Bloquear contas
 export const block_Account = async (req, res) => {
-    const { id }  = req.params
+    const { id }  = req.body
    
     try{    
+        const idUser = req.user
+        const user = await User.findById(id)
 
-        const user = await User.findByIdAndUpdate(id)
+        if(user._id.toString() === idUser._id.toString()){
+            return res.status(422).json({ msg: "Você não poder bloquer o próprio acesso!" })
+        }
+
+        if(user.role == "admin"){
+            return res.status(422).json({ msg: "Você não pode bloquear outro admin!" })
+        }
 
         if(!user){
             return res.status(404).json({ errors: ["Usuário não encontrado!"] })
@@ -44,7 +52,7 @@ export const block_Account = async (req, res) => {
 
 //Desbloquear usuários
 export const unlock_Account = async (req, res) => {
-    const { id } = req.params
+    const { id } = req.body
 
     try{
 

@@ -1,0 +1,83 @@
+:root {
+    --secondary-color: #9967ff;
+    --detail: #a578ff;
+    --background-color: #121668;
+    --secondary-background-color: #06163a;
+    --separator-color: #163b99;
+    --white: white;
+    --window: #0c0f53;
+    --danger: rgb(255, 89, 89);
+}
+
+
+.container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    background-color: var(--secondary-background-color);
+    border: 2px solid var(--detail);
+    height: 60%;
+    width: 60%;
+    border-radius: 10px;
+    padding: 2vw;
+    color: white;
+}
+
+.infoMsg{
+    color: white;
+    background-color: var(--separator-color);
+    padding: 1em;
+    border-radius: 5px;
+}
+
+.content svg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: .4em;
+    color: red;
+    font-size: 2vw;
+    cursor: pointer;
+}
+
+.btns {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vw;
+}
+
+.btns button{
+    border-radius: 10px;
+    height: 30px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid var(--separator-color);
+    color: white;
+    width: 200px;
+}
+
+.btns button:first-child:hover{
+    background-color: var(--danger);
+}
+
+.btns button:last-child:hover{
+    background-color: green;
+}

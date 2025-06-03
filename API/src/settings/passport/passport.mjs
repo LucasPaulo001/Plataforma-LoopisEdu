@@ -61,6 +61,9 @@ passport.use(new GitHubStrategy({
                 email: profile.emails?.[0].value || ''
             })
         }
+        if(!user.active){
+            return done(null, false, { message: 'Conta bloqueada. Contate o suporte.' });
+        }
         return done(null, user)
     }
     catch (err) {

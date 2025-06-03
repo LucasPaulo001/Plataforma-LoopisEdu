@@ -12,9 +12,9 @@ import validate from "../middlewares/handleValidation.mjs";
 //Rotas
 routerAdmin.get('/listAll', authGuard, roleGuard("admin"), list_all_users)
 
-routerAdmin.post('/blockAccount/user/:id', authGuard, validate, block_Account)
+routerAdmin.patch('/blockAccount/user', authGuard, validate, block_Account)
 
-routerAdmin.post('/unlockAccount/user/:id', authGuard, validate, unlock_Account)
+routerAdmin.patch('/unlockAccount/user', authGuard, validate, unlock_Account)
 
 
 export default routerAdmin

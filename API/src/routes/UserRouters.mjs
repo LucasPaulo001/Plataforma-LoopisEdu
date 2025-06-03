@@ -42,7 +42,7 @@ routerUser.get('/me', authGuard, getMe)
 
 routerUser.get('/listEmployee', authGuard, listEmployee)
 
-routerUser.get('/feedback', authGuard, feedback)
+routerUser.post('/feedback', authGuard, feedback)
 
 
 //google

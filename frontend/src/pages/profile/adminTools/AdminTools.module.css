@@ -1,0 +1,64 @@
+:root {
+    --secondary-color: #9967ff;
+    --detail: #a578ff;
+    --background-color: #121668;
+    --secondary-background-color: #06163a;
+    --separator-color: #163b99;
+    --white: white;
+    --window: #0c0f53;
+}
+
+
+.container {
+    border-left: 1px solid var(--detail);
+    padding: 1vw;
+    width: 100%;
+}
+
+.container h2 {
+    padding: 1vw;
+    border-bottom: 1px solid var(--detail);
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    padding: 1vw;
+    gap: 1.4vw;
+    align-items: center;
+}
+
+.dataUser {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.list span {
+    text-align: center;
+}
+
+.btnInfo {
+    background: transparent;
+    border: none;
+    font-size: 2.5vw;
+    color: white;
+    cursor: pointer;
+    transition: .4s ease-in-out;
+}
+
+.btnInfo:hover {
+    color: var(--detail);
+}
+
+.blocked {
+    color: red;
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+.unlock {
+    color: white;
+}

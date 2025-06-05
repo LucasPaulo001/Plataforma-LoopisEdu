@@ -29,8 +29,9 @@
 }
 
 .dataUser {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2vw;
     width: 100%;
     justify-content: space-between;
 }
@@ -61,4 +62,24 @@
 
 .unlock {
     color: white;
+}
+
+@media(max-width: 490px) {
+    .container {
+        height: 100%;
+        margin: 8vw 0 0;
+    }
+
+    .btnInfo svg {
+        font-size: 7vw;
+    }
+
+    .dataUser {
+        font-size: 3.4vw;
+    }
+
+    .list {
+        gap: 5vw;
+        margin: 4vw 0;
+    }
 }

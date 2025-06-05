@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import nodemailer, { createTransport } from "nodemailer"
 import crypto from "crypto"
+import { processMessage } from "../nlp/service.mjs";
 dotenv.config();
 
 const jwtSecret = process.env.JWT_SECRET;
@@ -335,3 +336,22 @@ export const feedback = async (req, res) => {
         res.status(500).json({ msg: "Erro interno do servidor!" })
     }
 }
+
+//Chatbot
+export const faq = async (req, res) => {
+    const { question } = req.body
+    
+    try{
+        if(!question){
+            res.status(402).json({ msg: "Pergunta não enviada!" })
+        }
+
+        const answer = await processMessage(question.toLowerCase())
+
+        res.json({ answer })
+    }
+    catch(error){
+        return res.status(500).json({ msg: "Erro interno do servidor!" })
+    }
+}
+

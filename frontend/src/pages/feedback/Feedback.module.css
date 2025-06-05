@@ -41,7 +41,7 @@
     text-indent: 10px;
 }
 
-.btns{
+.btns {
     text-align: center;
 }
 
@@ -57,7 +57,7 @@
     transition: .4s ease-in-out;
 }
 
-.success{
+.success {
     background-color: var(--separator-color);
     color: rgb(101, 255, 101);
     padding: 1vw;
@@ -65,11 +65,21 @@
     font-weight: bold;
 }
 
-.btns .buttonSend:hover{
+.btns .buttonSend:hover {
     background-color: var(--separator-color);
 }
 
 .localForm form .content::placeholder,
 .inputName input::placeholder {
     color: rgba(255, 255, 255, 0.658);
+}
+
+@media(max-width: 490px) {
+    .localForm {
+        width: 90%;
+    }
+
+    .container h1 {
+        padding: 4vw;
+    }
 }

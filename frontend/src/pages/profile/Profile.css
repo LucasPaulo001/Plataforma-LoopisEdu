@@ -1,15 +1,15 @@
 :root {
-  --secondary-color: #9967ff;
-  --detail: #a578ff;
-  --background-color: #121668;
-  --secondary-background-color: #06163a;
-  --separator-color: #163b99;
-  --white: white;
-  --window: #0c0f53;
+    --secondary-color: #9967ff;
+    --detail: #a578ff;
+    --background-color: #121668;
+    --secondary-background-color: #06163a;
+    --separator-color: #163b99;
+    --white: white;
+    --window: #0c0f53;
 }
 
 
-.containerProfile{
+.containerProfile {
     display: flex;
     flex-direction: column;
     gap: 2vw;
@@ -18,18 +18,18 @@
     height: 100vh;
 }
 
-.containerProfile .successMsg{
+.containerProfile .successMsg {
     background-color: #06163a;
 }
 
-.dataUser{
+.dataUser {
     text-align: center;
     width: 100%;
     border-bottom: 2px solid var(--detail);
     padding: 1vw;
 }
 
-.contentProfile{
+.contentProfile {
     background-color: var(--window);
     display: grid;
     grid-template-columns: 20% 1fr;
@@ -41,7 +41,7 @@
     border-radius: 5px;
 }
 
-.contentDataUser{
+.contentDataUser {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -50,7 +50,7 @@
     width: 100%;
 }
 
-.data{
+.data {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -59,7 +59,7 @@
     align-items: center;
 }
 
-.menuProfile{
+.menuProfile {
     width: 100%;
     padding: 1vw;
     border-left: 2px solid var(--detail);
@@ -68,33 +68,34 @@
     align-items: center;
 }
 
-.listOptions ul li{
+.listOptions ul li {
     list-style: none;
     padding: 1vw;
     transition: .2s ease-in-out;
 }
-.listOptions{
+
+.listOptions {
     width: 100%;
     padding: 0 1.2vw;
 }
 
-.selected{
+.selected {
     background-color: var(--separator-color);
     border-radius: 5px;
 }
 
-.title{
+.title {
     width: 100%;
     text-align: center;
     border-bottom: 2px solid var(--detail);
     padding-bottom: 1vw;
 }
 
-.data form .localInput input{
+.data form .localInput input {
     color: white !important;
 }
 
-.data form{
+.data form {
     display: flex;
     flex-direction: column;
     gap: 3vw;
@@ -107,11 +108,11 @@
     box-shadow: 5px 6px var(--secondary-color);
 }
 
-.data .localInput svg{
+.data .localInput svg {
     color: rgba(255, 255, 255, 0.521) !important;
 }
 
-.listOptions ul{
+.listOptions ul {
     width: 100%;
     gap: .3vw;
     display: flex;
@@ -120,7 +121,7 @@
     cursor: pointer;
 }
 
-.btnSubmit{
+.btnSubmit {
     height: 40px;
     border-radius: 5px;
     border: none;
@@ -130,6 +131,62 @@
     cursor: pointer;
 }
 
-.listOptions ul li:hover{
+.listOptions ul li:hover {
     background-color: var(--separator-color);
 }
+
+/* Responsividade de tela de ferramentas de perfil */
+@media(max-width: 450px) {
+    .containerProfile {
+        display: flex;
+        flex-direction: column;
+        gap: 3vw;
+        margin: 5vw;
+    }
+
+    .data form {
+        width: 80%;
+    }
+
+    .contentDataUser {
+        height: 40%;
+    }
+
+    .menuProfile {
+        height: 100%;
+        padding: 10vw 0 0;
+        font-size: 3vw;
+        border: none;
+        text-align: center;
+    }
+
+    .menuProfile h1 {
+        padding: 4vw 0 0;
+        font-size: 4vw;
+        border-top: 1px solid var(--detail);
+        width: 100%;
+    }
+    .title{
+        font-size: 5vw;
+    }
+
+    .data {
+        padding: 6vw 0;
+    }
+
+    .contentProfile {
+        display: flex;
+        height: 95%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 95%;
+    }
+
+    .listOptions ul {
+        font-size: 5vw;
+        gap: 2vw;
+    }
+}
+
+@media(max-width: 768) and (min-whidth: 1024px) {}

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../contexts/authContext"
 import "./ModalProfile.css"
-import { BsBoxArrowRight, BsXLg, BsPencilSquare, BsInfoCircle, BsChatQuote } from "react-icons/bs";
+import { BsBoxArrowRight, BsXLg, BsBook, BsPencilSquare, BsChatDots, BsCollectionPlay, BsInfoCircle, BsChatQuote } from "react-icons/bs";
 
 
 export const ModalProfile = ({ stateModal, setStateModal }) => {
@@ -24,21 +24,40 @@ export const ModalProfile = ({ stateModal, setStateModal }) => {
                     <div onClick={handleClose} className="closeProfile">
                         <BsXLg />
                     </div>
-                    <h1>{usuario.nome} - { usuario.role }</h1>
+                    <h1>{usuario.nome} - {usuario.role}</h1>
 
                     <div className="content">
+
                         <ul>
+                            {/* links do navbar no mobile */}
+                            <div className="linksToMobile">
+                                <NavLink to={"/course"} onClick={handleClose} className={({ isActive }) =>
+                                    isActive && ""}>
+                                    <li> <BsBook /> Capacitações</li>
+                                </NavLink>
+                                <NavLink to={"/myCourses"} onClick={handleClose} className={({ isActive }) =>
+                                    isActive && ""}>
+                                    <li> <BsCollectionPlay /> Meus Cursos</li>
+                                </NavLink>
+
+                                <NavLink to={"/comunity"} onClick={handleClose}
+                                    className={({ isActive }) =>
+                                        isActive && ""}>
+                                    <li> <BsChatDots /> Comunidade</li>
+                                </NavLink>
+                            </div>
+
                             <NavLink to={"/profile"} onClick={handleClose} className={({ isActive }) =>
                                 isActive && ""}>
                                 <li> <BsPencilSquare /> Meu perfil</li>
                             </NavLink>
 
-                            <NavLink to={"/about"} onClick={handleClose} className={({ isActive }) => 
+                            <NavLink to={"/about"} onClick={handleClose} className={({ isActive }) =>
                                 isActive && ""}>
                                 <li> <BsInfoCircle /> Sobre</li>
                             </NavLink>
 
-                            <NavLink to={"/feedback"} onClick={handleClose} className={({ isActive }) => 
+                            <NavLink to={"/feedback"} onClick={handleClose} className={({ isActive }) =>
                                 isActive && ""}>
                                 <li> <BsChatQuote /> Feedback</li>
                             </NavLink>

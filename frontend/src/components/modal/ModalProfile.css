@@ -25,7 +25,8 @@
     align-items: center;
     padding: 2vw;
     clip-path: polygon(0% 0%, 90% 0%, 100% 0%, 100% 100%, 10% 100%, 0% 90%);
-    box-shadow: inset -6px -3px 11px var(--secondary-color);;
+    box-shadow: inset -6px -3px 11px var(--secondary-color);
+    ;
 }
 
 .logoutBtn {
@@ -47,9 +48,9 @@
 }
 
 .logoutBtn:hover {
-  background-color: var(--separator-color);
-  color: var(--white);
-  box-shadow: 0 0 10px var(--detail);
+    background-color: var(--separator-color);
+    color: var(--white);
+    box-shadow: 0 0 10px var(--detail);
 }
 
 .content {
@@ -67,7 +68,7 @@
     transition: 0.3s ease-in-out;
 }
 
-.content ul li{
+.content ul li {
     border: 1px solid var(--detail);
     border-radius: 5px;
     padding: .4vw;
@@ -77,7 +78,7 @@
     justify-content: space-between;
     justify-items: center;
     align-items: center;
-    
+
 }
 
 .content ul {
@@ -86,7 +87,7 @@
     display: flex;
     flex-direction: column;
     gap: 1vw;
-    
+
 }
 
 .content ul li:hover {
@@ -110,6 +111,50 @@
     cursor: pointer;
 }
 
-.logoutBtn:hover ~ .content{
+.logoutBtn:hover~.content {
     border: 2px solid red;
 }
+
+.linksToMobile {
+    display: none;
+}
+
+@media(max-width: 450px) {
+    .modalProfile {
+        width: 100%;
+        padding: 11vw 4vw;
+    }
+
+    .modalProfile h1 {
+        font-size: 5vw;
+    }
+
+    .closeProfile {
+        font-size: 8vw;
+    }
+
+    .content {
+        width: 100%;
+    }
+
+    .logoutBtn {
+        font-size: 6vw;
+    }
+
+    .content ul {
+        gap: 6vw;
+    }
+
+    .content ul a li {
+        font-size: 6vw;
+        padding: 2vw;
+    }
+
+    .linksToMobile {
+        display: flex;
+        flex-direction: column;
+        gap: 6vw;
+    }
+}
+
+@media(min-width: 768px) and (max-width: 1024px) {}

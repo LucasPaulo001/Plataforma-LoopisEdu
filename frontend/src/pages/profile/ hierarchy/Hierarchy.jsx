@@ -28,10 +28,12 @@ export const Hierarchy = () => {
                 <div className={styles.localEmployee} key={idx}>
                     <h2>{cargo.titulo}</h2>
                     {Hierarchy.filter(user => cargo.role.includes(user.role)).map((employee, i) => (
+                        <>
                         <span key={`${cargo.titulo}-${i}`}>
                             {employee.role} {" - "}
                             {employee.nome}
                         </span>
+                        </>
                     ))}
                 </div>
             ))}

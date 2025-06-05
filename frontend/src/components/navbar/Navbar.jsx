@@ -1,7 +1,7 @@
 import "./Navbar.css"
 import logo from "../../assets/images/LogoPNG.png"
 import { NavLink } from "react-router-dom"
-import { BsPerson, BsHouseDoor, BsBook, BsCollectionPlay, BsChatDots, BsSearch } from "react-icons/bs"
+import { BsPerson, BsHouseDoor, BsList, BsBook, BsCollectionPlay, BsChatDots, BsSearch } from "react-icons/bs"
 import { ModalProfile } from "../modal/ModalProfile"
 import { useState } from "react"
 
@@ -59,7 +59,13 @@ export const Navbar = () => {
             <div className="localProfile">
                 <ul>
                     <li>
-                        <span onClick={() => setStateModal(!stateModal)} className="link profile"><BsPerson /></span>
+                        <span onClick={() => setStateModal(!stateModal)} className="link profile">
+                            <BsPerson />
+                        </span>
+
+                        <span onClick={() => setStateModal(!stateModal)} className="link menuMob">
+                            <BsList />
+                        </span>
                     </li>
                 </ul>
 

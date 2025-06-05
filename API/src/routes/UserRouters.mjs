@@ -12,7 +12,8 @@ import {
     verifyEmail,
     resendTokenValidation,
     listEmployee,
-    feedback
+    feedback,
+    faq
 } from "../controllers/UserController.mjs";
 
 import { login } from "../controllers/UserController.mjs";
@@ -43,6 +44,8 @@ routerUser.get('/me', authGuard, getMe)
 routerUser.get('/listEmployee', authGuard, listEmployee)
 
 routerUser.post('/feedback', authGuard, feedback)
+
+routerUser.post('/faq', authGuard, faq)
 
 
 //google

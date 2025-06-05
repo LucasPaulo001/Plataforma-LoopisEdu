@@ -5,6 +5,7 @@ import "./Profile.css"
 import { useState, useEffect } from "react"
 import { BsPerson, BsLock } from "react-icons/bs"
 import { AdminTools } from "./adminTools/AdminTools"
+import { Faq } from "./faq/Faq"
 
 export const Profile = () => {
     const { usuario } = useAuth()
@@ -177,9 +178,9 @@ export const Profile = () => {
                 {
                     select == "faq" && (
 
-                        <div className="menuProfile">
-                            <h1>Tela de FAQ</h1>
-                        </div>
+                        <>
+                            <Faq />
+                        </>
                     )
                 }
                 {

@@ -51,6 +51,10 @@ const UserSchema = new Schema({
         ],
         default: 'Membro'
     },
+    lecionador: {
+        type: Boolean,
+        default: false
+    },
     setores: {
         type: [String],
         enum: [

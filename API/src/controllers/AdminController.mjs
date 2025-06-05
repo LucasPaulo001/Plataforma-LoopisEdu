@@ -1,6 +1,4 @@
-import express from "express";
 import User from "../models/User.mjs";
-const adminRouter = express.Router();
 
 //Rotas
 
@@ -24,14 +22,18 @@ export const block_Account = async (req, res) => {
    
     try{    
         const idUser = req.user
-        const user = await User.findById(id)
+        const user = await User.findById(id).select("-password")
 
         if(user._id.toString() === idUser._id.toString()){
             return res.status(422).json({ msg: "Você não poder bloquer o próprio acesso!" })
         }
 
-        if(user.role == "admin"){
+        if(user.role === "admin"){
             return res.status(422).json({ msg: "Você não pode bloquear outro admin!" })
+        }
+
+        if(user.role === "Presidente"){
+            return res.status(422).json({ msg: "Você não pode bloquear o Presidente!" })
         }
 
         if(!user){

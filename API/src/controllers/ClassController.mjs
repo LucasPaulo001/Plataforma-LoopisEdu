@@ -45,7 +45,7 @@ export const uploadClass = async (req, res) => {
 export const getClass = async (req, res) => {
     try{
         //Aulas em ordem de envio
-        const classes = await Class.find().sort({ createDate: -1 })
+        const classes = await Class.find().sort({ createDate: -1 }).populate("author", "id")
 
         res.status(200).json(classes)
     }

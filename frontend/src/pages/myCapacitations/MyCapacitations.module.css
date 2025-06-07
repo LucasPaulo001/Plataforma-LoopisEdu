@@ -1,0 +1,30 @@
+.cardCap {
+    height: 200px;
+}
+
+.cardCap img {
+    border: 4px solid transparent;
+    height: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .4s ease-in-out;
+}
+
+.cardCap img:hover{
+    border: 4px solid var(--detail);
+}
+
+.container{
+    padding: 2vw;
+}
+
+.container h2{
+    margin: 1vw;
+}
+
+.containerSaves {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    padding: 2vw;
+    justify-items: center;
+}

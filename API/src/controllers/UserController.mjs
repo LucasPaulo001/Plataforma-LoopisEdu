@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import nodemailer, { createTransport } from "nodemailer"
 import crypto from "crypto"
 import { processMessage } from "../nlp/service.mjs";
+import Class from "../models/Class.mjs";
 dotenv.config();
 
 const jwtSecret = process.env.JWT_SECRET;
@@ -97,7 +98,7 @@ export const register = async (req, res) => {
     catch (error) {
         console.log(error)
         return res.status(500).json({ msg: "Erro interno do servidor" })
-        
+
     }
 }
 
@@ -114,14 +115,16 @@ export const login = async (req, res) => {
             return res.status(422).json({ errors: ["Usuário não encontrado!"] })
         }
 
-        if(!user.active){
+        if (!user.active) {
             return res.status(422).json({ errors: ["Você não tem mais acesso ao sistema!"] })
         }
 
         //Verifica se o email está validado
-        if(!user.isEmailVerified){
-            return res.status(422).json({errors: ["Por favor valide seu E-mail, para fazer o login!"], 
-            resend: true})
+        if (!user.isEmailVerified) {
+            return res.status(422).json({
+                errors: ["Por favor valide seu E-mail, para fazer o login!"],
+                resend: true
+            })
         }
 
         //Verificando se a senha está correta
@@ -189,14 +192,14 @@ export const updateUser = async (req, res) => {
 export const verifyEmail = async (req, res) => {
     const { token } = req.params
 
-    try{    
+    try {
         const user = await User.findOne({
             'emailVerificationToken.token': token,
             'emailVerificationToken.expires': { $gt: Date.now() }
         })
 
-        if(!user){
-            return res.status(422).json({errors: ["Token inválido ou expirado!"]})
+        if (!user) {
+            return res.status(422).json({ errors: ["Token inválido ou expirado!"] })
         }
 
         user.isEmailVerified = true
@@ -204,10 +207,10 @@ export const verifyEmail = async (req, res) => {
 
         await user.save()
 
-        return res.status(200).json({msg: "E-mail verificado com sucesso!"})
+        return res.status(200).json({ msg: "E-mail verificado com sucesso!" })
     }
-    catch(error){
-        res.status(500).json({msg: "Erro interno do servidor!"})
+    catch (error) {
+        res.status(500).json({ msg: "Erro interno do servidor!" })
         console.log(error)
     }
 }
@@ -216,15 +219,15 @@ export const verifyEmail = async (req, res) => {
 export const resendTokenValidation = async (req, res) => {
     const { email } = req.body
 
-    try{
-        const user = await User.findOne({email})
+    try {
+        const user = await User.findOne({ email })
 
-        if(!user){
-            return res.status(404).json({errors: ["Usuário não encontrado!"]})
+        if (!user) {
+            return res.status(404).json({ errors: ["Usuário não encontrado!"] })
         }
 
-        if(user.isEmailVerified){
-            return res.status(400).json({errors: ["E-mail já está verificado!"]})
+        if (user.isEmailVerified) {
+            return res.status(400).json({ errors: ["E-mail já está verificado!"] })
         }
 
         const newToken = generateTokenValidation()
@@ -263,8 +266,8 @@ export const resendTokenValidation = async (req, res) => {
         return res.status(200).json({ msg: "E-mail de verificação reenviado com sucesso!" })
 
     }
-    catch(error){
-        return res.status(500).json({msg: "Erro interno do servidor!"})
+    catch (error) {
+        return res.status(500).json({ msg: "Erro interno do servidor!" })
     }
 }
 
@@ -287,7 +290,7 @@ export const getMe = async (req, res) => {
 
 //Rota de listagem de usuário - Hierarquia
 export const listEmployee = async (req, res) => {
-    try{
+    try {
 
         const users = await User.find().select("-password")
 
@@ -296,7 +299,7 @@ export const listEmployee = async (req, res) => {
         res.status(200).json({ employee })
 
     }
-    catch(error){
+    catch (error) {
         res.status(500).json({ msg: "Erro interno do servidor!" })
         console.log(error)
     }
@@ -304,10 +307,10 @@ export const listEmployee = async (req, res) => {
 
 //Rota para enviar feedback sobre a aplicação
 export const feedback = async (req, res) => {
-    
+
     const { userEmail, userName, content } = req.body
 
-    try{
+    try {
 
         const transporter = createTransport({
             service: "gmail",
@@ -332,7 +335,7 @@ export const feedback = async (req, res) => {
         return res.status(200).json({ msg: "Obrigado por nos ajudar a melhorar!" })
 
     }
-    catch(error){
+    catch (error) {
         res.status(500).json({ msg: "Erro interno do servidor!" })
     }
 }
@@ -340,9 +343,9 @@ export const feedback = async (req, res) => {
 //Chatbot
 export const faq = async (req, res) => {
     const { question } = req.body
-    
-    try{
-        if(!question){
+
+    try {
+        if (!question) {
             res.status(402).json({ msg: "Pergunta não enviada!" })
         }
 
@@ -350,8 +353,103 @@ export const faq = async (req, res) => {
 
         res.json({ answer })
     }
-    catch(error){
+    catch (error) {
         return res.status(500).json({ msg: "Erro interno do servidor!" })
     }
 }
+
+//Curtir aulas
+export const likeClass = async (req, res) => {
+    const { idClass } = req.params
+    const idUser = req.user._id
+
+    try {
+
+        const classes = await Class.findById(idClass)
+
+        if (!classes) {
+            return res.status(404).json({ errors: ["Aula não encontrada!"] })
+        }
+
+        const hasUserLiked = classes.likes.includes(idUser)
+
+        if (hasUserLiked) {
+            classes.likes.pull(idUser)
+        }
+        else {
+            classes.likes.push(idUser)
+        }
+
+        await classes.save()
+
+        res.status(200).json({
+            liked: !hasUserLiked,
+            totalLikes: classes.likes.length
+        })
+
+    }
+    catch (error) {
+        console.log(error)
+        res.status(500).json({ msg: "Erro interno do servidor!" })
+    }
+}
+
+//Salvar aulas
+export const saveClasses = async (req, res) => {
+    const { idClass } = req.params
+    const idUser = req.user._id
+
+    try {
+
+        const user = await User.findById(idUser).select("-password")
+
+        if (!user) {
+            return res.status(404).json({ errors: ["Usuário não encontrado!"] })
+        }
+
+        const hasSavedClass = user.classSaved.includes(idClass)
+
+        if (hasSavedClass) {
+            user.classSaved.pull(idClass)
+        }
+
+        else {
+            user.classSaved.push(idClass)
+        }
+
+        await user.save()
+
+        res.status(200).json({
+            saved: !hasSavedClass,
+        })
+
+    }
+    catch (error) {
+        console.log(error)
+        res.status(500).json({ msg: "Erro interno do servidor!" })
+    }
+}
+
+//Listar aulas salvas pelo usuário
+export const listSavedClasses = async (req, res) => {
+    const idUser = req.user._id
+
+    try {
+
+        const user = await User.findById(idUser).select("-password").populate("classSaved")
+
+        if (!user) {
+            return res.status(404).json({ errors: ["Usuário não encontrado!"] })
+        }
+
+        res.status(200).json(user.classSaved)
+
+    }
+    catch (error) {
+        console.log(error)
+        res.status(500).json({ msg: "Erro interno do servidor!" })
+    }
+}
+
+
 

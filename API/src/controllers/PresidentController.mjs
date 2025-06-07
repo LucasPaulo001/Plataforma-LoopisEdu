@@ -39,8 +39,18 @@ export const promotion = async (req, res) => {
         'admin'
     ]
 
+    const employeeUnique = [
+        'Presidente',
+        'Vice-Presidente',
+        'Diretor de Projetos',
+        'Diretor de RH',
+        'Diretor de Comercial',
+        'Diretor de Marketing'
+    ]
+
     try {
         const user = await User.findById(id).select("-password")
+
         const userLogged = req.user
 
         if (!user) {
@@ -57,6 +67,13 @@ export const promotion = async (req, res) => {
 
         if (userLogged.role !== "Presidente") {
             return res.status(422).json({ errors: ["Acesso negado, Permissões insuficientes!"] })
+        }
+
+        if(employeeUnique.includes(employee)){
+            const existRole = await User.findOne({ role: employee })
+            if(existRole && existRole._id.toString() !== id){
+                return res.status(422).json({ errors: [`Já existe um usuário com essa função (${employee})`] })
+            }
         }
 
         user.role = employee
@@ -132,6 +149,7 @@ export const addSetor = async (req, res) => {
         'Comercial',
         'Marketing',
         'Recursos Humanos',
+        'Membro',
     ]
 
     try {
@@ -149,38 +167,8 @@ export const addSetor = async (req, res) => {
 
         await user.save()
 
-        res.status(200).json({ msg: `Usuário, '${user.nome}' agora é do setor de ${setor}!` })
+        res.status(200).json({ msg: `Usuário, '${user.nome}' agora é ${setor}!` })
 
-    }
-    catch (error) {
-        console.log(error)
-        res.status(500).json({ msg: "Erro interno do servidor!" })
-    }
-}
-
-
-//Remover setor do usuário
-export const removeSetor = async (req, res) => {
-    const { id } = req.body
-
-    try {
-        const user = await User.findById(id).select("-password")
-
-        if (!user) {
-            return res.status(404).json({ msg: "Usuário não encontrado!" })
-        }
-
-        if(user.setores.length == 0){
-            return res.status(404).json({ msg: "Usuário não está em nenhum setor!" })
-        }
-
-        const setorUser = user.setores[user.setores.length - 1]
-
-        user.setores.pop()
-
-        await user.save()
-
-        res.status(200).json({ msg: `Usuário não é mais do setor de ${setorUser}`})
     }
     catch (error) {
         console.log(error)

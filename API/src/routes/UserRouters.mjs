@@ -13,7 +13,10 @@ import {
     resendTokenValidation,
     listEmployee,
     feedback,
-    faq
+    faq,
+    likeClass,
+    saveClasses,
+    listSavedClasses
 } from "../controllers/UserController.mjs";
 
 import { login } from "../controllers/UserController.mjs";
@@ -46,6 +49,12 @@ routerUser.get('/listEmployee', authGuard, listEmployee)
 routerUser.post('/feedback', authGuard, feedback)
 
 routerUser.post('/faq', authGuard, faq)
+
+routerUser.patch('/class/:idClass/like', authGuard, likeClass)
+
+routerUser.patch('/class/:idClass/save', authGuard, saveClasses)
+
+routerUser.get('/listClassSaved', authGuard, listSavedClasses)
 
 
 //google

@@ -8,7 +8,6 @@ import {
     addLecionador,
     removeLecionador,
     addSetor,
-    removeSetor
 
 } from "../controllers/PresidentController.mjs";
 
@@ -23,8 +22,6 @@ routerPresidente.patch("/removeEmployee", authGuard, roleGuard("Presidente"), re
 routerPresidente.patch("/promotionEmployee", authGuard, roleGuard("Presidente"), promotion)
 
 routerPresidente.patch("/addSetor", authGuard, roleGuard("Presidente"), addSetor)
-
-routerPresidente.patch("/removeSetor", authGuard, roleGuard("Presidente"), removeSetor)
 
 
 //Tanto admin quanto Presidente podem adicionar lecionadores

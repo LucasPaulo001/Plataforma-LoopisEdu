@@ -16,6 +16,11 @@ const ClassSchema = new Schema({
         type: String,
         required: true
     },
+
+    likes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }],
     
     category: [String],
 

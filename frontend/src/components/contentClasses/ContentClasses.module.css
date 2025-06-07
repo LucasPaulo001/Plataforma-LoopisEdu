@@ -34,6 +34,9 @@
     font-size: 2vw;
     display: flex;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: .5vw;
 }
 
 .categorys {
@@ -48,7 +51,20 @@
     padding: 5px;
 }
 
-@meda(max-width: 490px){
-    
+.menu {
+    cursor: pointer;
 }
 
+@media(max-width: 490px) {
+    .titleContent {
+        gap: 7vw;
+    }
+
+    .titleContent button {
+        font-size: 6vw;
+    }
+
+    .dataClass {
+        gap: 7vw;
+    }
+}

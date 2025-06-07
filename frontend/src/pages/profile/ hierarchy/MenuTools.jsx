@@ -99,6 +99,7 @@ export const MenuTools = ({ data, onSuccess }) => {
                         <option value="Recursos Humanos">RH</option>
                         <option value="Marketing">Marketing</option>
                         <option value="Comercial">Comercial</option>
+                        <option value="Membro">Rebaixar a "membro"</option>
                     </select>
                     <button onClick={handleChooseSetor}>Salvar setor</button>
                 </div>

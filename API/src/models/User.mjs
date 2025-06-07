@@ -26,6 +26,11 @@ const UserSchema = new Schema({
         default: true
     },
 
+    classSaved: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Class"
+    }],
+
     emailVerificationToken: {
         token: {
             type: String

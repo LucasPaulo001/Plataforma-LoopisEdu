@@ -5,6 +5,8 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/navigation"
+import { useAuth } from "../../contexts/authContext"
+
 
 export const Classes = () => {
 
@@ -36,7 +38,7 @@ export const Classes = () => {
                             1024: {
                                 slidesPerView: 3,
                             },
-                            
+
                         }}
                     >
                         {classes.map((aula) => (
@@ -47,7 +49,10 @@ export const Classes = () => {
                                     alt="video"
                                     onClick={() => navigate(`/aula/${aula._id}`)}
                                 />
-                                <h3 style={{textAlign: "center"}}>{aula.title}</h3>
+                                <div>
+                                    <h3 style={{ textAlign: "center" }}>{aula.title}</h3>
+                                    
+                                </div>
                             </SwiperSlide>
                         ))}
                     </Swiper>

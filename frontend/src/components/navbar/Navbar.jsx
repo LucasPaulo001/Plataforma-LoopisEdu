@@ -48,7 +48,7 @@ export const Navbar = () => {
                 </ul>
                 <ul>
                     <li>
-                        <NavLink to={"/myCourses"} className={"profileLink"}>
+                        <NavLink to={"/MyCapacitations"} className={"profileLink"}>
                             <span className="link"><BsCollectionPlay /> Meus Cursos</span>
                         </NavLink>
                     </li>

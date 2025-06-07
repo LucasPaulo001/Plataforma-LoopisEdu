@@ -139,11 +139,75 @@ export const ProfileProvider = ({ children }) => {
         }
     }
 
+    //Mudar setor do usuário (mudança de diretoria)
+    const chooseEmployee = async (employee, id) => {
+        const apiChoose = 'http://localhost:8080/api/presidente/promotionEmployee'
+
+        try{
+            const res = await fetch(apiChoose, {
+                method: "PATCH",
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({ employee, id })
+            })
+
+            const data = await res.json()
+
+            if(res.ok){
+                console.log(data)
+            }
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+
+    //Mudar setor do usuário
+    const chooseSetor = async (setor, id) => {
+        const apiChoose = 'http://localhost:8080/api/presidente/addSetor'
+
+        try{
+            const res = await fetch(apiChoose, {
+                method: "PATCH",
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({ setor, id })
+            })
+
+            const data = await res.json()
+
+            if(res.ok){
+                console.log(data)
+            }
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+
 
 
     return (
-        <ProfileContext.Provider value={{ Hierarchy, listHierarchy, errors, setErrors, blockUsers, success, setSuccess, 
-            sendFeedBack, listAllUser, allUsers, unlockUser }}>
+        <ProfileContext.Provider value={{ 
+            Hierarchy, 
+            listHierarchy, 
+            errors, 
+            setErrors, 
+            blockUsers, 
+            success, 
+            setSuccess, 
+            sendFeedBack, 
+            listAllUser, 
+            allUsers, 
+            unlockUser,
+            chooseEmployee,
+            chooseSetor
+        }}
+            >
             {children}
         </ProfileContext.Provider>
     )

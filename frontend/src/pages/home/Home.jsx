@@ -1,6 +1,8 @@
+import { Classes } from "../../components/classes/Classes";
 import { useAuth } from "../../contexts/authContext";
 import "./Home.css"
 import { useEffect } from "react"
+import { LoopBot } from "../../components/LoopBot/LoopBot";
 
 export const Home = () => {
 
@@ -27,6 +29,11 @@ export const Home = () => {
             <div className="heroPage">
                 <h1>Bem vindo(a), {usuario.nome}</h1>
             </div>
+            <Classes />
+            <div className="localSeparator">
+                <span className="separator"></span>
+            </div>
+            <LoopBot />
         </>
     )
 }

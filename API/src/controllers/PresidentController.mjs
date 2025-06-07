@@ -24,7 +24,7 @@ export const removeEmployee = async (req, res) => {
     }
 }
 
-//Rota para promoção
+//Rota para promoção (Diretoria)
 export const promotion = async (req, res) => {
     const { employee, id } = req.body
 
@@ -60,6 +60,7 @@ export const promotion = async (req, res) => {
         }
 
         user.role = employee
+        user.lecionador = true
 
         await user.save()
 
@@ -90,7 +91,7 @@ export const addLecionador = async (req, res) => {
 
         await user.save()
 
-        res.status(200).json({ msg: `Usuário '${user.nome}' é agora um lecionador!!` })
+        res.status(200).json({ msg: `Usuário '${user.nome}' é agora um lecionador!!`, user })
     }
     catch (error) {
         console.log(error)
@@ -144,7 +145,7 @@ export const addSetor = async (req, res) => {
             return res.status(422).json({ errors: ["Setor inválido!"] })
         }
 
-        user.setores = setor
+        user.role = setor
 
         await user.save()
 

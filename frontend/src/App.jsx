@@ -11,9 +11,11 @@ import { Register } from './pages/login_register/register/Register'
 import { Capacitations } from './pages/capacitations/Capacitations';
 import { Feedback } from './pages/feedback/Feedback';
 import { ModalInfo } from './components/modalInfo/ModalInfo';
+import { ContentClasses } from './components/contentClasses/ContentClasses';
 
 //Bibliotecas
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom"
+
 
 
 
@@ -29,6 +31,7 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/course' element={!token ? <Navigate to={'/login'} /> : <Capacitations />} />
           <Route path='/oauth-redirect' element={<OauthRedirect />} />
+          <Route path='/aula/:id' element={!token ? <Navigate to={'/login'} /> : <ContentClasses />} />
           <Route path='/feedback' element={!token ? <Navigate to={'/login'} /> : <Feedback /> } />
           <Route path='/profile' element={!token ? <Navigate to={'/login'} /> : <Profile />} />
           <Route path='/admin/user/:id' element={<ModalInfo />} />

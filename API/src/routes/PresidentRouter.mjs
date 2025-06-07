@@ -28,7 +28,15 @@ routerPresidente.patch("/removeSetor", authGuard, roleGuard("Presidente"), remov
 
 
 //Tanto admin quanto Presidente podem adicionar lecionadores
-routerPresidente.patch("/addLecionador", authGuard, roleGuard("Presidente", "admin"), addLecionador)
+routerPresidente.patch("/addLecionador", authGuard, roleGuard(
+    "Presidente", 
+    "admin", 
+    "Diretor de Projetos", 
+    "Diretor de RH", 
+    "Diretor de Marketing", 
+    "Diretor de Comercial", 
+    "Vice-Presidente")
+, addLecionador)
 
 routerPresidente.patch("/removeLecionador", authGuard, roleGuard("Presidente", "admin"), removeLecionador)
 

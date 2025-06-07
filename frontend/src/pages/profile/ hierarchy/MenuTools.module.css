@@ -1,0 +1,102 @@
+.containerMenuTools {
+    position: absolute;
+    background-color: var(--separator-color);
+    padding: 2vw;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 5vw;
+    width: 50%;
+    gap: 2vw;
+    overflow-y: auto;
+    height: 300px;
+}
+
+.activeLec,
+.desactiveLec {
+    background: transparent;
+    border: none;
+    font-size: 3vw;
+    color: white;
+    cursor: pointer;
+}
+
+.localBtns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+}
+
+.notLecionador {
+    color: white;
+    opacity: .5;
+    transition: .4s ease-in-out;
+}
+
+.notLecionador:hover {
+    color: var(--detail);
+}
+
+.tagLEC {
+    background-color: var(--detail);
+    padding: 5px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.tagLEC svg {
+    font-size: 3vw;
+}
+
+.isLecionador {
+    color: var(--detail);
+    transition: .4s ease-in-out;
+}
+
+.isLecionador:hover {
+    color: rgba(255, 255, 255, 0.473);
+}
+
+.activeLec:hover {
+    color: var(--detail);
+}
+
+.modifyDirector, .modifySetor {
+    padding: 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    flex-direction: column;
+}
+
+.modifyDirector button, .modifySetor button{
+    height: 35px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: bold;
+    padding: 3px;
+}
+
+.select{
+    height: 35px;
+    border-radius: 10px;
+    border: none;
+    outline: var(--detail) solid 3px;
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+}
+
+.select option{
+    background-color: var(--separator-color);
+    padding: 1vw;
+    cursor: pointer;
+}

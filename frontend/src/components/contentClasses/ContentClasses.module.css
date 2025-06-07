@@ -1,0 +1,54 @@
+.dataClass {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+    background-color: var(--background-modal-profile);
+    padding: 2vw;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3em;
+}
+
+.titleContent {
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+}
+
+.marked svg {
+    color: var(--detail) !important;
+}
+
+.titleContent button span {
+    display: flex;
+}
+
+.titleContent button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 2vw;
+    display: flex;
+    cursor: pointer;
+}
+
+.categorys {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+.categorys span {
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+@meda(max-width: 490px){
+    
+}
+

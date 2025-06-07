@@ -45,6 +45,10 @@ const UserSchema = new Schema({
             'Diretor de RH',
             'Diretor de Comercial',
             'Diretor de Marketing',
+            'Projetos',
+            'Comercial',
+            'Marketing',
+            'Recursos Humanos',
             'Trainee',
             'Membro',
             'admin'
@@ -55,16 +59,6 @@ const UserSchema = new Schema({
         type: Boolean,
         default: false
     },
-    setores: {
-        type: [String],
-        enum: [
-            'Projetos',
-            'Comercial',
-            'Marketing',
-            'Recursos Humanos',
-        ],
-        default: []
-    }
 }, { timestamps: true })
 
 export default mongoose.model("User", UserSchema);

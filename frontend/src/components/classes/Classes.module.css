@@ -1,0 +1,29 @@
+.containerClasses {
+    padding: 3em 1vw;
+
+}
+
+.content {
+    padding: 3em;
+}
+
+.iconAula {
+    border: 4px solid transparent;
+    height: 16vw;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.iconAula:hover {
+    transition: .4s ease-in-out;
+    border: 4px solid var(--secondary-color);
+}
+
+@media(max-width: 490px){
+    .content{
+        padding: 3em 0;
+    }
+    .iconAula{
+        height: 160px;
+    }
+}

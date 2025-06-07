@@ -61,3 +61,17 @@ export const userUpdateValidation = () => {
 
     ]
 }
+
+export const classValidations = () => {
+    return[
+        body("title")
+        .notEmpty()
+        .withMessage("O campo 'título' é obrigatório!"),
+
+        body("youtubeLink")
+        .notEmpty()
+        .withMessage("O campo de link da aula é obrigatório!"),
+
+
+    ]
+}

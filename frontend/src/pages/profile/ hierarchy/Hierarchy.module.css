@@ -12,7 +12,7 @@
     background-color: var(--background-color);
     padding: 1vw;
     width: 100%;
-    height: 100%;
+    position: relative;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -20,10 +20,44 @@
     justify-content: flex-start;
     margin-top: 1em;
     gap: 2vw;
+    overflow-y: auto;
+    height: 60vh;
+}
+
+.item {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    padding: 1vw;
+}
+
+.localItem {
+    background-color: var(--secondary-background-color);
+    border-radius: 10px;
+}
+
+.localTools {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.tools {
+    display: flex;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 2vw;
+    cursor: pointer;
 }
 
 .localEmployee {
     text-align: center;
+    width: 100%;
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
 }
 
 @media(max-width: 490px) {

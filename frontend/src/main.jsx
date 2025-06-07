@@ -5,14 +5,17 @@ import App from './App.jsx'
 import { AuthProvider } from './contexts/authContext.jsx'
 import { UpdateProvider } from './contexts/updateContext.jsx'
 import { ProfileProvider } from './contexts/profileContext.jsx'
+import { ClasseProvider } from './contexts/classesContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
       <ProfileProvider>
-        <UpdateProvider>
-          <App />
-        </UpdateProvider>
+        <ClasseProvider>
+          <UpdateProvider>
+            <App />
+          </UpdateProvider>
+        </ClasseProvider>
       </ProfileProvider>
     </AuthProvider>
   </StrictMode>

@@ -4,9 +4,11 @@ import { NavLink } from "react-router-dom"
 import { BsPerson, BsHouseDoor, BsList, BsBook, BsCollectionPlay, BsChatDots, BsSearch } from "react-icons/bs"
 import { ModalProfile } from "../modal/ModalProfile"
 import { useState } from "react"
+import { useAuth } from "../../contexts/authContext"
 
 export const Navbar = () => {
     const [stateModal, setStateModal] = useState(false)
+    const { usuario } = useAuth()
 
     return (
         <nav className="navbar">
@@ -16,12 +18,12 @@ export const Navbar = () => {
                 </NavLink>
             </div>
 
-            <div className="search"> 
+            <div className="search">
                 <form>
-                   <div className="inputSearch">
-                       <BsSearch />
-                       <input type="text" placeholder="Buscar conteúdo..." />
-                   </div>
+                    <div className="inputSearch">
+                        <BsSearch />
+                        <input type="text" placeholder="Buscar conteúdo..." />
+                    </div>
                 </form>
             </div>
 
@@ -34,11 +36,15 @@ export const Navbar = () => {
                     </li>
                 </ul>
                 <ul>
-                    <li>
-                        <NavLink to={"/course"} className={"profileLink"}>
-                            <span className="link"><BsBook /> Capacitações</span>
-                        </NavLink>
-                    </li>
+                    {
+                        usuario.lecionador && (
+                            <li>
+                                <NavLink to={"/course"} className={"profileLink"}>
+                                    <span className="link"><BsBook /> Capacitações</span>
+                                </NavLink>
+                            </li>
+                        )
+                    }
                 </ul>
                 <ul>
                     <li>

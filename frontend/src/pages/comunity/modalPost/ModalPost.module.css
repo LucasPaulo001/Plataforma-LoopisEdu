@@ -1,0 +1,93 @@
+.containerPost {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    backdrop-filter: blur(7px);
+    background-color: #06163a73;
+    justify-content: center;
+}
+
+.content {
+    width: 50%;
+    position: relative;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-background-color);
+    border-radius: 10px;
+    border: 1px solid var(--detail);
+}
+
+.content form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.inputForm {
+    width: 100%;
+    text-align: center;
+}
+
+.inputForm input,
+.inputForm textarea {
+    width: 80%;
+}
+
+.inputForm textarea {
+    width: 80%;
+    height: 100%;
+    border-radius: 10px;
+    text-indent: 5px;
+    color: white;
+    padding: 1vw;
+    outline: 2px solid var(--detail);
+    background-color: var(--window);
+}
+
+.buttonPublish button {
+    height: 40px;
+    width: 100px;
+    background: transparent;
+    border: 2px solid var(--detail);
+    border-radius: 5px;
+    font-weight: bold;
+    transition: .4s ease-in-out;
+    font-size: 1vw;
+}
+
+.buttonPublish button:hover {
+    background-color: var(--detail);
+    color: white;
+}
+
+.inputForm textarea::placeholder {
+    color: rgba(255, 255, 255, 0.644);
+}
+
+.inputTextarea {
+    height: 50%;
+}
+
+.content svg {
+    position: absolute;
+    top: 10px;
+    right: 9px;
+    font-size: 2vw;
+    color: red;
+    cursor: pointer;
+}
+
+.messages {
+    height: 100%;
+    padding: 2vw;
+}

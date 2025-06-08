@@ -6,6 +6,7 @@ import nodemailer, { createTransport } from "nodemailer"
 import crypto from "crypto"
 import { processMessage } from "../nlp/service.mjs";
 import Class from "../models/Class.mjs";
+import Messages from "../models/Messages.mjs";
 dotenv.config();
 
 const jwtSecret = process.env.JWT_SECRET;
@@ -446,6 +447,163 @@ export const listSavedClasses = async (req, res) => {
 
     }
     catch (error) {
+        console.log(error)
+        res.status(500).json({ msg: "Erro interno do servidor!" })
+    }
+}
+
+//Fazer postagem na comunidade (Presidente, Vice, Diretores e Lecionadores)
+export const postInCommunity = async (req, res) => {
+    const { subject, content } = req.body
+
+    try {
+
+        const newPostInCommunity = Messages.create({
+            subject,
+            content,
+            author: req.user._id
+        })
+
+        res.status(200).json({
+            newPostInCommunity
+        })
+
+    }
+    catch (error) {
+        console.log(error)
+        res.status(500).json({ msg: "Erro interno do servidor!" })
+    }
+}
+
+//Listar postagens na comunidade
+export const listPosts = async (req, user) => {
+    try{
+
+        const postsInCommunity = await Messages.find()
+        .populate("author", "name role")
+        .populate("responses.author", "name role")
+        .sort({ createdAt: -1 })
+
+        res.status(200).json(postInCommunity)
+
+    }
+    catch(error){
+        console.log(error)
+        res.status(500).json({ msg: "Erro interno do servidor!" })
+    }
+}
+
+//Like em postagem do feed
+export const likeInPostCommunity = async (req, res) => {
+    const { idUser, idPost } = req.body
+
+    try {
+
+        const postInCommunity = await Messages.findById(idPost)
+
+        if (!postInCommunity) {
+            return res.status(404).json({ errors: ["Postagem não encontrada!"] })
+        }
+
+        const hasLiked = postInCommunity.likes.includes(idUser)
+
+        if (hasLiked) {
+            postInCommunity.likes.pull(idUser)
+        }
+        else {
+            postInCommunity.likes.push(idUser)
+        }
+
+        postInCommunity.save()
+
+        res.status(200).json({
+            liked: !hasLiked,
+            quantLikes: postInCommunity.likes.length
+        })
+
+    }
+    catch (error) {
+        console.log(error)
+        res.status(500).json({ msg: "Erro interno do servidor!" })
+    }
+}
+
+//Fixar Postagem (Presidente, Vice e Diretores)
+export const fixedPost = async (req, res) => {
+    const idUser = req.user._id
+    const { idPost } = req.body
+
+    const acceptedRoles = [
+        'Presidente',
+        'Vice-Presidente',
+        'Diretor de Projetos',
+        'Diretor de RH',
+        'Diretor de Comercial',
+        'Diretor de Marketing',
+    ]
+
+    try {
+
+        const user = await User.findById(idUser).select("-password")
+
+        //Validações de usuário
+        if (!user) {
+            return res.status(404).json({ errors: ["Usuário não encontrado!"] })
+        }
+
+        if (!acceptedRoles.includes(user.role)) {
+            return res.status(422).json({ errors: ["Você não tem permissão suficientes para fixar postagens!"] })
+        }
+
+        const postInCommunity = await Messages.findById(idPost)
+
+        //Validações
+        if (!postInCommunity) {
+            return res.status(404).json({ errors: ["Postagem não encontrada!"] })
+        }
+
+        postInCommunity.fixed = !postInCommunity.fixed
+
+        await postInCommunity.save()
+
+        return res.status(200).json({
+            msg: `Postagem ${postInCommunity.fixed ? "fixada" : "desfixada"} com sucesso!`,
+            post: postInCommunity
+        });
+
+    }
+    catch (error) {
+        console.log(error)
+        res.status(500).json({ msg: "Erro interno do servidor!" })
+    }
+}
+
+//Responder Postagens
+export const responsePost = async (req, res) => {
+    const { idPost, content } = req.body
+    const user = req.user._id
+
+    try{
+
+        const postInCommunity = await Messages.findById(idPost)
+
+        if(!postInCommunity){
+            return res.status(404).json({ errors: ["Postagem não encontrada!"] })
+        }
+
+        const newResponse = {
+            author: user,
+            content: content
+        }
+
+        postInCommunity.responses.push(newResponse)
+
+        await postInCommunity.save()
+
+        res.status(200).json({ msg: "Resposta adicionada!", response: newResponse })
+
+    }
+    catch(error){
         console.log(error)
         res.status(500).json({ msg: "Erro interno do servidor!" })
     }

@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secondary-background-color);
+    width: 80%;
+    height: 85vh;
+}
+
+.search_post {
+    display: flex;
+    justify-content: center;
+    gap: 3vw;
+    padding-top: 2vw;
+}
+
+.search_post input::placeholder {
+    color: rgba(255, 255, 255, 0.733);
+}
+
+.search_post input {
+    width: 50%;
+    height: 30px;
+    border-radius: 10px;
+    text-indent: 15px;
+    outline: 1px solid var(--detail);
+    border: none;
+    color: white;
+    background-color: var(--window);
+}
+
+.search_post button {
+    background: transparent;
+    border: none;
+    font-size: 2vw;
+    color: var(--detail);
+    cursor: pointer;
+}

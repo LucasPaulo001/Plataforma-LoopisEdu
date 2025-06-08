@@ -62,6 +62,9 @@ body {
   align-items: center;
   gap: 2vw;
 }
+.inputTextarea{
+  height: 60%;
+}
 
 @media(max-width: 740px) {
   .errorMsg {

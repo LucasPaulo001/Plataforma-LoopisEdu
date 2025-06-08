@@ -12,10 +12,12 @@ import { Capacitations } from './pages/capacitations/Capacitations';
 import { Feedback } from './pages/feedback/Feedback';
 import { ModalInfo } from './components/modalInfo/ModalInfo';
 import { ContentClasses } from './components/contentClasses/ContentClasses';
+import { MyCapacitations } from './pages/myCapacitations/MyCapacitations';
+import { Comunity } from './pages/comunity/Comunity';
 
 //Bibliotecas
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom"
-import { MyCapacitations } from './pages/myCapacitations/MyCapacitations';
+
 
 
 
@@ -34,6 +36,7 @@ function App() {
           <Route path='/oauth-redirect' element={<OauthRedirect />} />
           <Route path='/aula/:id' element={!token ? <Navigate to={'/login'} /> : <ContentClasses />} />
           <Route path='/feedback' element={!token ? <Navigate to={'/login'} /> : <Feedback /> } />
+          <Route path='/comunity' element={!token ? <Navigate to={'/login'} /> : <Comunity />} />
           <Route path='/MyCapacitations' element={!token ? <Navigate to={'/login'} /> : <MyCapacitations />} />
           <Route path='/profile' element={!token ? <Navigate to={'/login'} /> : <Profile />} />
           <Route path='/admin/user/:id' element={<ModalInfo />} />

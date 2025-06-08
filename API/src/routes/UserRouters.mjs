@@ -16,7 +16,11 @@ import {
     faq,
     likeClass,
     saveClasses,
-    listSavedClasses
+    listSavedClasses,
+    postInCommunity,
+    likeInPostCommunity,
+    fixedPost,
+    responsePost
 } from "../controllers/UserController.mjs";
 
 import { login } from "../controllers/UserController.mjs";
@@ -56,6 +60,13 @@ routerUser.patch('/class/:idClass/save', authGuard, saveClasses)
 
 routerUser.get('/listClassSaved', authGuard, listSavedClasses)
 
+routerUser.post('/community/addPublish', authGuard, validate, postInCommunity)
+
+routerUser.patch('/community/like', authGuard, validate, likeInPostCommunity)
+
+routerUser.patch('/community/fixedPost', authGuard, validate, fixedPost)
+
+routerUser.post('/community/response', authGuard, validate, responsePost)
 
 //google
 

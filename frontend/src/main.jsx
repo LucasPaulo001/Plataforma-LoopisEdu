@@ -6,6 +6,7 @@ import { AuthProvider } from './contexts/authContext.jsx'
 import { UpdateProvider } from './contexts/updateContext.jsx'
 import { ProfileProvider } from './contexts/profileContext.jsx'
 import { ClasseProvider } from './contexts/classesContext.jsx'
+import { CommunityProvider } from './contexts/communityContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -13,7 +14,9 @@ createRoot(document.getElementById('root')).render(
       <ProfileProvider>
         <ClasseProvider>
           <UpdateProvider>
-            <App />
+            <CommunityProvider>
+              <App />
+            </CommunityProvider>
           </UpdateProvider>
         </ClasseProvider>
       </ProfileProvider>

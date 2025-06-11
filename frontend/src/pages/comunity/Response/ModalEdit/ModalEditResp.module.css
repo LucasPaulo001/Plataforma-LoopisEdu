@@ -1,0 +1,74 @@
+.conteinerEdit {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--backgound);
+    backdrop-filter: blur(4px);
+}
+
+.contentEdit {
+    position: relative;
+    height: 50%;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-modal-profile);
+    border-radius: 10px;
+}
+
+.conteinerEdit svg {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    font-size: 2vw;
+    color: red;
+    cursor: pointer;
+}
+
+.contentEdit form {
+    width: 100%;
+    display: flex;
+    gap: 2vw;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.localTextEdit {
+    width: 60%;
+    height: 50%;
+}
+
+.localTextEdit textarea {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    text-indent: 15px;
+    color: white;
+    padding: 1vw;
+    background-color: var(--window);
+    border: 2px solid var(--detail);
+    outline: 3px solid var(--detail);
+}
+
+.localTextEdit textarea::placeholder {
+    color: rgba(255, 255, 255, 0.692);
+}
+
+.btnSubmit button{
+    height: 30px;
+    width: 100px;
+    border: 2px solid var(--detail);
+    border-radius: 10px;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}

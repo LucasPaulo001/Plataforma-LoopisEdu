@@ -1,0 +1,106 @@
+.separatorPost {
+    width: 150px !important;
+    border-radius: 10px;
+}
+
+.cardPost {
+    padding: 1vw;
+    border-radius: 10px;
+    display: flex;
+    gap: 1vw;
+    width: 80%;
+    border: 1px solid var(--separator-color);
+    flex-direction: column;
+}
+
+.tools {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tools .deleteIcon {
+    color: var(--danger);
+}
+
+.tools .editIcon {
+    color: white;
+}
+
+.tools .fixePost {
+    color: white;
+}
+
+.btnsTools {
+    display: flex;
+    gap: 1vw;
+}
+
+.btnsTools button {
+    display: flex;
+    gap: .5vw;
+    align-items: center;
+    font-size: 1.4vw;
+}
+
+.tools .deleteIcon,
+.tools .editIcon,
+.tools .fixePost {
+    background: transparent;
+    border: none;
+    font-size: 1.5vw;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.tools .deleteIcon:hover {
+    transform: scale(1.2);
+}
+
+.tools .editIcon:hover {
+    transform: scale(1.2);
+}
+
+.tools .fixePost:hover {
+    transform: scale(1.2);
+}
+
+.fixed {
+    border: 3px solid var(--detail);
+}
+
+.fixed::after {
+    content: "Fixo 📍";
+    color: var(--detail);
+}
+
+.icon {
+    font-size: 2vw;
+    background: transparent;
+    border: none;
+    color: var(--detail);
+    cursor: pointer;
+}
+
+@media(max-width: 490px) {
+    .cardPost {
+        width: 95% !important;
+        gap: 4vw;
+        padding: 4vw;
+    }
+
+    .btnsTools {
+        gap: 4vw;
+    }
+
+    .btnsTools button {
+        font-size: 6vw;
+    }
+
+    .tools .deleteIcon,
+    .tools .editIcon,
+    .tools .fixePost {
+        font-size: 6vw;
+    }
+
+
+}

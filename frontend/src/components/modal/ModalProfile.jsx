@@ -35,7 +35,8 @@ export const ModalProfile = ({ stateModal, setStateModal }) => {
                                     isActive && ""}>
                                     <li> <BsBook /> Capacitações</li>
                                 </NavLink>
-                                <NavLink to={"/myCourses"} onClick={handleClose} className={({ isActive }) =>
+                                <NavLink to={"/MyCapacitations"} 
+                                onClick={handleClose} className={({ isActive }) =>
                                     isActive && ""}>
                                     <li> <BsCollectionPlay /> Meus Cursos</li>
                                 </NavLink>

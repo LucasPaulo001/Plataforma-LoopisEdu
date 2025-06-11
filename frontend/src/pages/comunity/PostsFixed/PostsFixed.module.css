@@ -1,0 +1,108 @@
+.cardPost {
+    padding: 1vw;
+    border-radius: 10px;
+    display: flex;
+    gap: .8vw;
+    width: 80%;
+    border: 1px solid var(--separator-color);
+    flex-direction: column;
+}
+
+.containerFixed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vw;
+    height: 0;
+    overflow: hidden;
+    background-color: var(--background-modal-profile);
+    transition: .4s ease-in-out;
+
+}
+
+.containerFixed.open {
+    height: 50vh;
+    overflow: visible;
+    overflow-y: auto;
+    padding: 1vw;
+}
+
+.tools {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tools .deleteIcon {
+    color: var(--danger);
+}
+
+.tools .editIcon {
+    color: white;
+}
+
+.tools .fixePost {
+    color: white;
+}
+
+.separatorPost {
+    width: 150px !important;
+    border-radius: 10px;
+}
+
+.btnsTools {
+    display: flex;
+    gap: 1vw;
+}
+
+.tools .deleteIcon,
+.tools .editIcon,
+.tools .fixePost {
+    background: transparent;
+    border: none;
+    font-size: 1.5vw;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.tools .deleteIcon:hover {
+    transform: scale(1.2);
+}
+
+.tools .editIcon:hover {
+    transform: scale(1.2);
+}
+
+
+.tools .fixePost:hover {
+    transform: scale(1.2);
+}
+
+.fixed {
+    border: 3px solid var(--detail);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fixed::after {
+    content: "Fixo 📍";
+    color: var(--detail);
+}
+
+.icon {
+    font-size: 2vw;
+    background: transparent;
+    border: none;
+    color: var(--detail);
+    cursor: pointer;
+}
+
+@media(max-width: 490px) {
+    .containerFixed {
+        padding: 0;
+    }
+
+    .containerFixed.open{
+        padding: 5vw 0;
+    }
+}

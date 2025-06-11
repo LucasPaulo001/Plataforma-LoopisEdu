@@ -2,7 +2,11 @@ import express from "express";
 const routerAdmin = express.Router();
 
 //Importando funções do controller
-import { block_Account, list_all_users, unlock_Account } from "../controllers/AdminController.mjs";
+import { 
+    block_Account, 
+    list_all_users, 
+    unlock_Account 
+} from "../controllers/AdminController.mjs";
 
 //Middlewares
 import { authGuard } from "../middlewares/authGuard.mjs";

@@ -30,7 +30,19 @@ body {
   font-size: 1vw;
   padding: 0 !important;
   border-radius: 10px;
-  padding: 1vw !important
+  padding: 1vw !important;
+  transition: .4s ease-in-out;
+}
+
+.successMSGsystem{
+  color: rgb(43, 134, 43);
+  background-color: var(--window);
+  font-weight: bold;
+  font-size: 1vw;
+  padding: 0 !important;
+  border-radius: 10px;
+  padding: 1vw !important;
+  transition: .4s ease-in-out;
 }
 
 .localSeparator {

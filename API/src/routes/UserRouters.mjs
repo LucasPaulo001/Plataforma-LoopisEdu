@@ -18,9 +18,15 @@ import {
     saveClasses,
     listSavedClasses,
     postInCommunity,
+    listPosts,
     likeInPostCommunity,
     fixedPost,
-    responsePost
+    responsePost,
+    deletePost,
+    editPost,
+    listFixedPosts,
+    deleteResponse,
+    editResponse
 } from "../controllers/UserController.mjs";
 
 import { login } from "../controllers/UserController.mjs";
@@ -62,11 +68,23 @@ routerUser.get('/listClassSaved', authGuard, listSavedClasses)
 
 routerUser.post('/community/addPublish', authGuard, validate, postInCommunity)
 
+routerUser.get('/community/posts', authGuard, listPosts)
+
 routerUser.patch('/community/like', authGuard, validate, likeInPostCommunity)
 
 routerUser.patch('/community/fixedPost', authGuard, validate, fixedPost)
 
 routerUser.post('/community/response', authGuard, validate, responsePost)
+
+routerUser.delete('/community/deletePost', authGuard, deletePost)
+
+routerUser.put('/community/editPost', authGuard, editPost)
+
+routerUser.get('/community/listFixed', authGuard, listFixedPosts)
+
+routerUser.delete('/community/response/delete', authGuard, deleteResponse)
+
+routerUser.put('/community/response/edit', authGuard, editResponse)
 
 //google
 

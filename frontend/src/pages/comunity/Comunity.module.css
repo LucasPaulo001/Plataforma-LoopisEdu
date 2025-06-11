@@ -9,7 +9,8 @@
     flex-direction: column;
     background-color: var(--secondary-background-color);
     width: 80%;
-    height: 85vh;
+    height: 100vh;
+    border-radius: 0px 0px 10px 10px;
 }
 
 .search_post {
@@ -17,6 +18,14 @@
     justify-content: center;
     gap: 3vw;
     padding-top: 2vw;
+}
+
+.icon {
+    font-size: 2vw;
+    background: transparent;
+    border: none;
+    color: var(--detail);
+    cursor: pointer;
 }
 
 .search_post input::placeholder {
@@ -40,4 +49,116 @@
     font-size: 2vw;
     color: var(--detail);
     cursor: pointer;
+}
+
+.messages {
+    height: 100%;
+    gap: 2vw;
+    display: flex;
+    padding: 2vw;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    justify-content: flex-start;
+}
+
+.separatorPost {
+    width: 150px !important;
+    border-radius: 10px;
+}
+
+.cardPost {
+    padding: 1vw;
+    border-radius: 10px;
+    display: flex;
+    gap: 1vw;
+    width: 80%;
+    border: 1px solid var(--separator-color);
+    flex-direction: column;
+}
+
+.tools {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tools .deleteIcon {
+    color: var(--danger);
+}
+
+.tools .editIcon {
+    color: white;
+}
+
+.tools .fixePost {
+    color: white;
+}
+
+.btnsTools {
+    display: flex;
+    gap: 1vw;
+}
+
+.tools .deleteIcon,
+.tools .editIcon,
+.tools .fixePost {
+    background: transparent;
+    border: none;
+    font-size: 1.5vw;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.tools .deleteIcon:hover {
+    transform: scale(1.2);
+}
+
+.tools .editIcon:hover {
+    transform: scale(1.2);
+}
+
+.tools .fixePost:hover {
+    transform: scale(1.2);
+}
+
+.fixed {
+    border: 3px solid var(--detail);
+}
+
+.fixed::after {
+    content: "Fixo 📍";
+    color: var(--detail);
+}
+
+@media(max-width: 490px) {
+    .content {
+        width: 100%;
+    }
+
+    .search_post input {
+        width: 70%;
+    }
+
+    .search_post button {
+        font-size: 6vw;
+    }
+
+    .cardPost {
+        width: 95% !important;
+        gap: 4vw;
+    }
+
+    .btnsTools button {
+        font-size: 6vw;
+    }
+
+    .messages {
+        gap: 20px;
+        padding: 10vw 0;
+    }
+
+    .btnsTools {
+        gap: 4vw; 
+    }
+
 }

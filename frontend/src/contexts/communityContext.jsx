@@ -10,7 +10,7 @@ export const CommunityProvider = ({ children }) => {
 
     //Postar na comunidade
     const postInCommunity = async (subject, content) => {
-        const publishAPI = 'http://localhost:8080/api/users/community/addPublish'
+        const publishAPI = 'http://localhost:8080/api/community/addPublish'
 
         try{
 
@@ -42,7 +42,7 @@ export const CommunityProvider = ({ children }) => {
 
     //Listando postagens da comunidade
     const listPostInCommunity = async () => {
-        const listAPI = 'http://localhost:8080/api/users/community/posts'
+        const listAPI = 'http://localhost:8080/api/community/posts'
 
         try{
 
@@ -67,7 +67,7 @@ export const CommunityProvider = ({ children }) => {
 
     //Deletando postagem
     const deletePost = async (idPost) => {
-        const deleteAPI = 'http://localhost:8080/api/users/community/deletePost'
+        const deleteAPI = 'http://localhost:8080/api/community/deletePost'
 
         try{
 
@@ -102,7 +102,7 @@ export const CommunityProvider = ({ children }) => {
 
     //Editar postagem 
     const editPost = async (idPost, subject, content) => {
-        const editAPI = 'http://localhost:8080/api/users/community/editPost'
+        const editAPI = 'http://localhost:8080/api/community/editPost'
 
         try{
 
@@ -130,7 +130,7 @@ export const CommunityProvider = ({ children }) => {
 
     //Fixar Publicação
     const fixedPosts = async (idPost) => {
-        const fixedAPI = 'http://localhost:8080/api/users/community/fixedPost'
+        const fixedAPI = 'http://localhost:8080/api/community/fixedPost'
 
         try{
 
@@ -158,7 +158,7 @@ export const CommunityProvider = ({ children }) => {
 
     //Listar publicações fixadas
     const listFixedPosts = async () => {
-        const listAPI = 'http://localhost:8080/api/users/community/listFixed'
+        const listAPI = 'http://localhost:8080/api/community/listFixed'
 
         try{
 
@@ -182,7 +182,7 @@ export const CommunityProvider = ({ children }) => {
 
     //Curtir publicações da comunidade
     const likePost = async ( idUser, idPost ) => {
-        const likeAPI = 'http://localhost:8080/api/users/community/like'
+        const likeAPI = 'http://localhost:8080/api/community/like'
 
         try{
 
@@ -213,7 +213,7 @@ export const CommunityProvider = ({ children }) => {
 
     //Responder postagem em comunidade
     const responsePost = async (idPost, content) => {
-        const repAPI = 'http://localhost:8080/api/users/community/response'
+        const repAPI = 'http://localhost:8080/api/community/response'
 
         try{
 
@@ -241,7 +241,7 @@ export const CommunityProvider = ({ children }) => {
 
     //Deletar resposta em postagem
     const deleteResponse = async (idPost, responseId) => {
-        const deleteResponseAPI = 'http://localhost:8080/api/users/community/response/delete'
+        const deleteResponseAPI = 'http://localhost:8080/api/community/response/delete'
 
         try{
 
@@ -270,7 +270,7 @@ export const CommunityProvider = ({ children }) => {
 
     //Editar resposta 
     const editResponse = async (idPost, responseId, content) => {
-        const editResponseAPI = 'http://localhost:8080/api/users/community/response/edit'
+        const editResponseAPI = 'http://localhost:8080/api/community/response/edit'
 
         try{
 

@@ -1,0 +1,74 @@
+.contentBox {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #06163a99;
+    backdrop-filter: blur(3px);
+}
+
+.content {
+    width: 70%;
+    position: relative;
+    height: 70%;
+    background-color: var(--background-modal-profile);
+    padding: 2vw;
+    border-radius: 10px;
+}
+
+.formBox {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+}
+
+.localInputBox {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.localInputBox input {
+    width: 90%;
+}
+
+.localInputBox textarea {
+    width: 90%;
+    height: 150px;
+    text-indent: 5px;
+    padding: 1vw;
+    border-radius: 10px;
+    outline: 2px solid var(--detail);
+    color: white;
+    background-color: var(--background);
+}
+
+.localInputBox textarea::placeholder {
+    color: rgba(255, 255, 255, 0.719);
+}
+
+.btnSave button {
+    border: 2px solid var(--detail);
+    font-size: 1.2vw;
+    width: 150px;
+    padding: .4vw;
+    border-radius: 10px;
+}
+
+.close {
+    position: absolute;
+    right: 6px;
+    cursor: pointer;
+    top: 6px;
+    font-size: 2vw;
+    color: red;
+}

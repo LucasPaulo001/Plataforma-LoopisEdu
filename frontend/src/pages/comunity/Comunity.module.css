@@ -9,7 +9,6 @@
     flex-direction: column;
     background-color: var(--secondary-background-color);
     width: 80%;
-    height: 100vh;
     border-radius: 0px 0px 10px 10px;
 }
 
@@ -130,6 +129,36 @@
     color: var(--detail);
 }
 
+.navCommunity {
+    font-size: 1.4vw;
+    position: sticky;
+    top: 3em;
+    z-index: 99;
+    background-color: var(--background-color);
+    padding: 1vw;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid var(--detail);
+    border-top: 2px solid var(--detail);
+    margin-top: 2vw;
+    justify-content: space-around;
+}
+
+.navCommunity .community {
+    cursor: pointer;
+}
+
+.navCommunity .wishbox {
+    cursor: pointer;
+}
+
+.select {
+    background-color: #a578ff45;
+    padding: .5vw;
+    border-radius: 4px;
+    transition: .2s ease-in-out;
+}
+
 @media(max-width: 490px) {
     .content {
         width: 100%;
@@ -158,7 +187,7 @@
     }
 
     .btnsTools {
-        gap: 4vw; 
+        gap: 4vw;
     }
 
 }

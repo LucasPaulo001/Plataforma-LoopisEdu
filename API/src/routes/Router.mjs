@@ -15,6 +15,9 @@ import routerPresidente from "./PresidentRouter.mjs";
 //Rotas de uploads de aulas
 import classRouter from "./ClassRouter.mjs";
 
+//Rotas de comunidade
+import communityRouter from "./CommunityRouter.mjs";
+
 // Emular __dirname para este arquivo
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -27,6 +30,7 @@ router.use('/api/users', routerUser);
 router.use('/api/admin', routerAdmin);
 router.use('/api/presidente', routerPresidente)
 router.use('/api/lecionador', classRouter)
+router.use('/api/community', communityRouter)
 
 
 router.get('/', (req, res) => {

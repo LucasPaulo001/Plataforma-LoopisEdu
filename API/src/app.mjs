@@ -35,9 +35,7 @@ const publicPath = path.join(__dirname, '../../landingPage');
 const reactDistPath = path.join(__dirname, 'dist');
 
 app.use('/app', express.static(reactDistPath));
-app.get('/app/*', (req, res) => {
-  res.sendFile(path.join(reactDistPath, 'index.html'));
-});
+
 
 app.use(express.static(publicPath));
 app.use(express.static(path.join(__dirname, 'public')));

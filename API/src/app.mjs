@@ -34,12 +34,18 @@ const __dirname = path.dirname(__filename);
 // Caminho para a pasta onde está os arquivos .html
 const publicPath = path.join(__dirname, '../../landingPage');
 
+app.use('/app', express.static(path.join(__dirname, 'dist')));
+
 // Servir arquivos estáticos (CSS, JS, imagens)
 app.use(express.static(publicPath));
 
 //Config. dados json e formulário
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.get('/app/*', (req, res) => {
+  res.sendFile(path.join(reactDistPath, 'index.html'));
+});
 
 // Servir arquivos estáticos da pasta 'public'
 app.use(express.static(path.join(__dirname, 'public')));

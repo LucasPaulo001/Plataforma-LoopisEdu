@@ -31,13 +31,21 @@ export const ModalProfile = ({ stateModal, setStateModal }) => {
                         <ul>
                             {/* links do navbar no mobile */}
                             <div className="linksToMobile">
-                                <NavLink to={"/course"} onClick={handleClose} className={({ isActive }) =>
-                                    isActive && ""}>
-                                    <li> <BsBook /> Capacitações</li>
-                                </NavLink>
-                                <NavLink to={"/MyCapacitations"} 
-                                onClick={handleClose} className={({ isActive }) =>
-                                    isActive && ""}>
+                                {
+                                    usuario.lecionador && (
+                                        <NavLink 
+                                        to={"/course"} 
+                                        onClick={handleClose} 
+                                        className={({ isActive }) =>
+                                            isActive && ""}>
+                                            <li> <BsBook /> Capacitações</li>
+                                        </NavLink>
+                                    )
+                                }
+
+                                <NavLink to={"/MyCapacitations"}
+                                    onClick={handleClose} className={({ isActive }) =>
+                                        isActive && ""}>
                                     <li> <BsCollectionPlay /> Meus Cursos</li>
                                 </NavLink>
 

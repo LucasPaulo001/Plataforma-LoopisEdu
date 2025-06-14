@@ -1,64 +1,57 @@
-// Importando módulos
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import cors from "cors";
 import path from 'path';
 import { fileURLToPath } from 'url';
-import dotenv from "dotenv";
-import session from "express-session"
+import session from "express-session";
 import passport from "passport";
-import "./settings/passport/passport.mjs"
+import "./settings/passport/passport.mjs";
 
-//Config. dependências
+// Config. dependências
 const app = express();
 app.use(cors());
-dotenv.config();
-
 
 app.use(session({
     secret: process.env.SECRET_SESSION,
     resave: false,
     saveUninitialized: false
-}))
+}));
 
-app.use(passport.initialize())
-app.use(passport.session())
+app.use(passport.initialize());
+app.use(passport.session());
 
-// Configuração de banco de dados
+// Conexão com banco de dados (assegure-se que está correta)
 import connectToDatabase from "./settings/database/dbConnection.mjs";
-connectToDatabase(app);
+await connectToDatabase(); // se for async, aguarde a conexão
 
 // Emular __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Caminho para a pasta onde está os arquivos .html
+// Caminho para a landing page e React build
 const publicPath = path.join(__dirname, '../../landingPage');
-
-app.use('/app', express.static(path.join(__dirname, 'dist')));
-
-// Servir arquivos estáticos (CSS, JS, imagens)
-app.use(express.static(publicPath));
-
-//Config. dados json e formulário
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
 const reactDistPath = path.join(__dirname, 'dist');
 
-
+app.use('/app', express.static(reactDistPath));
 app.get('/app/*', (req, res) => {
   res.sendFile(path.join(reactDistPath, 'index.html'));
 });
 
-// Servir arquivos estáticos da pasta 'public'
+app.use(express.static(publicPath));
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Rota
+// Dados json e formulário
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Rotas da aplicação
 import router from "./routes/Router.mjs";
 app.use(router);
 
-//Conectando ao servidor
-const PORT = process.env.PORT;
+// Porta com fallback
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log("Conectado ao servidor na porta", PORT);
 });

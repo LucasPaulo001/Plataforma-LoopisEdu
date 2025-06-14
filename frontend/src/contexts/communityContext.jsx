@@ -6,47 +6,53 @@ export const CommunityProvider = ({ children }) => {
     const [success, setSuccess] = useState("")
     const [posts, setPosts] = useState([])
     const [likes, setLikes] = useState({})
-  
+
+    //URL de produção
+    const BASE_URL =
+        import.meta.env.MODE === "development"
+            ? "http://localhost:8080"
+            : import.meta.env.VITE_API_URL_PRODUCTION;
+
 
     //Postar na comunidade
     const postInCommunity = async (subject, content) => {
-        const publishAPI = 'http://localhost:8080/api/community/addPublish'
+        //const publishAPI = 'http://localhost:8080/api/community/addPublish'
 
-        try{
+        try {
 
-            const res = await fetch(publishAPI, {
+            const res = await fetch(`${BASE_URL}/api/community/addPublish`, {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    'Content-type': 'application/json'                    
+                    'Content-type': 'application/json'
                 },
                 body: JSON.stringify({ subject, content })
             })
 
             const data = await res.json()
 
-            if(res.ok){
+            if (res.ok) {
                 console.log(data)
                 setSuccess("Postagem feita com sucesso!")
-                setInterval(() =>{
+                setInterval(() => {
                     setSuccess("")
                 }, 5000)
                 await listPostInCommunity()
             }
 
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }
 
     //Listando postagens da comunidade
     const listPostInCommunity = async () => {
-        const listAPI = 'http://localhost:8080/api/community/posts'
+        //const listAPI = 'http://localhost:8080/api/community/posts'
 
-        try{
+        try {
 
-            const res = await fetch(listAPI, {
+            const res = await fetch(`${BASE_URL}/api/community/posts`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -54,24 +60,24 @@ export const CommunityProvider = ({ children }) => {
 
             const data = await res.json()
 
-            if(res.ok){
+            if (res.ok) {
                 console.log(data)
                 setPosts(data)
             }
 
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }
 
     //Deletando postagem
     const deletePost = async (idPost) => {
-        const deleteAPI = 'http://localhost:8080/api/community/deletePost'
+        //const deleteAPI = 'http://localhost:8080/api/community/deletePost'
 
-        try{
+        try {
 
-            const res = await fetch(deleteAPI, {
+            const res = await fetch(`${BASE_URL}/api/community/deletePost`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -82,11 +88,11 @@ export const CommunityProvider = ({ children }) => {
 
             const data = await res.json()
 
-            if(res.ok){
+            if (res.ok) {
                 console.log(data)
-                 setSuccess("Postagem deletata!")
+                setSuccess("Postagem deletata!")
 
-                setTimeout(() =>{
+                setTimeout(() => {
                     setSuccess("")
                 }, 8000)
 
@@ -94,7 +100,7 @@ export const CommunityProvider = ({ children }) => {
             }
 
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }
@@ -102,11 +108,11 @@ export const CommunityProvider = ({ children }) => {
 
     //Editar postagem 
     const editPost = async (idPost, subject, content) => {
-        const editAPI = 'http://localhost:8080/api/community/editPost'
+        //const editAPI = 'http://localhost:8080/api/community/editPost'
 
-        try{
+        try {
 
-            const res = await fetch(editAPI, {
+            const res = await fetch(`${BASE_URL}/api/community/editPost`, {
                 method: 'PUT',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -117,24 +123,24 @@ export const CommunityProvider = ({ children }) => {
 
             const data = await res.json()
 
-            if(res.ok){
+            if (res.ok) {
                 console.log(data)
                 await listPostInCommunity()
             }
 
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }
 
     //Fixar Publicação
     const fixedPosts = async (idPost) => {
-        const fixedAPI = 'http://localhost:8080/api/community/fixedPost'
+        //const fixedAPI = 'http://localhost:8080/api/community/fixedPost'
 
-        try{
+        try {
 
-            const res = await fetch(fixedAPI, {
+            const res = await fetch(`${BASE_URL}/api/community/fixedPost`, {
                 method: 'PATCH',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -145,24 +151,24 @@ export const CommunityProvider = ({ children }) => {
 
             const data = await res.json()
 
-            if(res.ok){
+            if (res.ok) {
                 console.log(data)
                 await listPostInCommunity()
             }
 
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }
 
     //Listar publicações fixadas
     const listFixedPosts = async () => {
-        const listAPI = 'http://localhost:8080/api/community/listFixed'
+        //const listAPI = 'http://localhost:8080/api/community/listFixed'
 
-        try{
+        try {
 
-            const res = await fetch(listAPI, {
+            const res = await fetch(`${BASE_URL}/api/community/listFixed`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -170,23 +176,23 @@ export const CommunityProvider = ({ children }) => {
 
             const data = res.json()
 
-            if(res.ok){
+            if (res.ok) {
                 console.log(data)
             }
 
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }
 
     //Curtir publicações da comunidade
-    const likePost = async ( idUser, idPost ) => {
-        const likeAPI = 'http://localhost:8080/api/community/like'
+    const likePost = async (idUser, idPost) => {
+        //const likeAPI = 'http://localhost:8080/api/community/like'
 
-        try{
+        try {
 
-            const res = await fetch(likeAPI, {
+            const res = await fetch(`${BASE_URL}/api/community/like`, {
                 method: 'PATCH',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -197,27 +203,27 @@ export const CommunityProvider = ({ children }) => {
 
             const data = await res.json()
 
-            if(res.ok){
+            if (res.ok) {
                 setLikes(prev => ({
-                ...prev,
-                [idPost]: data.quantLikes
-            }))
+                    ...prev,
+                    [idPost]: data.quantLikes
+                }))
                 await listPostInCommunity()
-                
+
             }
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }
 
     //Responder postagem em comunidade
     const responsePost = async (idPost, content) => {
-        const repAPI = 'http://localhost:8080/api/community/response'
+        //const repAPI = 'http://localhost:8080/api/community/response'
 
-        try{
+        try {
 
-            const res = await fetch(repAPI, {
+            const res = await fetch(`${BASE_URL}/api/community/response`, {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -228,24 +234,24 @@ export const CommunityProvider = ({ children }) => {
 
             const data = await res.json()
 
-            if(res.ok){
+            if (res.ok) {
                 console.log(data)
                 await listPostInCommunity()
             }
 
-        }   
-        catch(error){
+        }
+        catch (error) {
             console.log(error)
         }
     }
 
     //Deletar resposta em postagem
     const deleteResponse = async (idPost, responseId) => {
-        const deleteResponseAPI = 'http://localhost:8080/api/community/response/delete'
+        //const deleteResponseAPI = 'http://localhost:8080/api/community/response/delete'
 
-        try{
+        try {
 
-            const res = await fetch(deleteResponseAPI, {
+            const res = await fetch(`${BASE_URL}/api/community/response/delete`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -256,13 +262,13 @@ export const CommunityProvider = ({ children }) => {
 
             const data = await res.json()
 
-            if(res.ok){
+            if (res.ok) {
                 console.log(data)
                 await listPostInCommunity()
             }
 
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
 
@@ -270,11 +276,11 @@ export const CommunityProvider = ({ children }) => {
 
     //Editar resposta 
     const editResponse = async (idPost, responseId, content) => {
-        const editResponseAPI = 'http://localhost:8080/api/community/response/edit'
+        //const editResponseAPI = 'http://localhost:8080/api/community/response/edit'
 
-        try{
+        try {
 
-            const res = await fetch(editResponseAPI, {
+            const res = await fetch(`${BASE_URL}/api/community/response/edit`, {
                 method: 'PUT',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -285,22 +291,22 @@ export const CommunityProvider = ({ children }) => {
 
             const data = await res.json()
 
-            if(res.ok){
+            if (res.ok) {
                 await listPostInCommunity()
             }
 
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }
 
 
-    return(
-        <CommunityContext.Provider value={{ 
-            postInCommunity, 
-            success, 
-            listPostInCommunity, 
+    return (
+        <CommunityContext.Provider value={{
+            postInCommunity,
+            success,
+            listPostInCommunity,
             posts,
             deletePost,
             editPost,

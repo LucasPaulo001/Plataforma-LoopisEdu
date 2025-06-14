@@ -11,12 +11,19 @@ export const ClasseProvider = ({ children }) => {
     const { listHierarchy, usuario } = useAuth()
     const [savedClass, setSavedClass] = useState([])
 
+
+    //URL de produção
+    const BASE_URL =
+        import.meta.env.MODE === "development"
+            ? "http://localhost:8080"
+            : import.meta.env.VITE_API_URL_PRODUCTION;
+
     //Listar aulas
     const listClasses = async () => {
-        const apiListClasses = 'http://localhost:8080/api/lecionador/getClasses'
+        //const apiListClasses = 'http://localhost:8080/api/lecionador/getClasses'
 
         try {
-            const fetchData = await fetch(apiListClasses, {
+            const fetchData = await fetch(`${BASE_URL}/api/lecionador/getClasses`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -42,11 +49,11 @@ export const ClasseProvider = ({ children }) => {
 
     //Adicionar lecionador
     const addLecionador = async (id) => {
-        const apiAdd = 'http://localhost:8080/api/presidente/addLecionador'
+        //const apiAdd = 'http://localhost:8080/api/presidente/addLecionador'
 
         try {
 
-            const res = await fetch(apiAdd, {
+            const res = await fetch(`${BASE_URL}/api/presidente/addLecionador`, {
                 method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -69,10 +76,10 @@ export const ClasseProvider = ({ children }) => {
     //Retirar lecionador
     const removeLecionador = async (id) => {
 
-        const apiRemove = 'http://localhost:8080/api/presidente/removeLecionador'
+        //const apiRemove = 'http://localhost:8080/api/presidente/removeLecionador'
 
         try {
-            const res = await fetch(apiRemove, {
+            const res = await fetch(`${BASE_URL}/api/presidente/removeLecionador`, {
                 method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -92,7 +99,7 @@ export const ClasseProvider = ({ children }) => {
 
     //Postar aulas (lecionador)
     const uploadClasses = async (title, description, youtubeLink, category) => {
-        const uploadAPI = 'http://localhost:8080/api/lecionador/uploadClass'
+       // const uploadAPI = 'http://localhost:8080/api/lecionador/uploadClass'
 
         try {
             const categoryDefrag = category.split(",").map(cat => cat.trim()).filter(tag => tag !== "")
@@ -110,7 +117,7 @@ export const ClasseProvider = ({ children }) => {
             //url de thumb
             const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
-            const res = await fetch(uploadAPI, {
+            const res = await fetch(`${BASE_URL}/api/lecionador/uploadClass`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -140,11 +147,11 @@ export const ClasseProvider = ({ children }) => {
 
     //Curtir aula
     const likeClass = async (idClass) => {
-        const likeAPI = `http://localhost:8080/api/users/class/${idClass}/like`
+        //const likeAPI = `http://localhost:8080/api/users/class/${idClass}/like`
 
         try {
 
-            const res = await fetch(likeAPI, {
+            const res = await fetch(`${BASE_URL}/api/users/class/${idClass}/like`, {
                 method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -154,7 +161,7 @@ export const ClasseProvider = ({ children }) => {
             const data = await res.json()
 
             if (res.ok) {
-               setLikes(data.totalLikes)
+                setLikes(data.totalLikes)
             }
 
         }
@@ -164,11 +171,11 @@ export const ClasseProvider = ({ children }) => {
     }
 
     const saveClasses = async (idClass) => {
-        const saveAPI = `http://localhost:8080/api/users/class/${idClass}/save`
+        //const saveAPI = `http://localhost:8080/api/users/class/${idClass}/save`
 
-        try{
+        try {
 
-            const res = await fetch(saveAPI, {
+            const res = await fetch(`${BASE_URL}/api/users/class/${idClass}/save`, {
                 method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -177,23 +184,23 @@ export const ClasseProvider = ({ children }) => {
 
             const data = await res.json()
 
-            if(res.ok){
+            if (res.ok) {
                 console.log(data)
             }
 
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }
 
     //Listar cursos salvos
     const listSaves = async () => {
-        const listAPI = 'http://localhost:8080/api/users/listClassSaved'
+        //const listAPI = 'http://localhost:8080/api/users/listClassSaved'
 
-        try{
+        try {
 
-            const res = await fetch(listAPI, {
+            const res = await fetch(`${BASE_URL}/api/users/listClassSaved`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -201,13 +208,13 @@ export const ClasseProvider = ({ children }) => {
 
             const data = await res.json()
 
-            if(res.ok){
+            if (res.ok) {
                 console.log(data)
                 setSavedClass(data)
             }
 
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }

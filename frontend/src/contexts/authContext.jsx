@@ -7,6 +7,13 @@ export const AuthContext = createContext()
 const apiLogin = 'http://localhost:8080/api/users/login'
 const apiRegister = 'http://localhost:8080/api/users/register'
 
+//URL de produção
+const BASE_URL =
+  import.meta.env.MODE === "development"
+    ? "http://localhost:8080"
+    : import.meta.env.VITE_API_URL_PRODUCTION;
+
+
 
 //Provider de autênticação
 export const AuthProvider = ({ children }) => {
@@ -33,7 +40,7 @@ export const AuthProvider = ({ children }) => {
             setErrors([])
             setLoading(true)
 
-            const res = await fetch(apiLogin, {
+            const res = await fetch(`${BASE_URL}/api/users/login`, {
                 method: "POST",
                 headers: {
                     'Content-type': 'application/json'
@@ -76,7 +83,7 @@ export const AuthProvider = ({ children }) => {
         try {
             setErrors([])
             setLoading(true)
-            const res = await fetch(apiRegister, {
+            const res = await fetch(`${BASE_URL}/api/users/register`, {
                 method: "POST",
                 headers: {
                     'Content-type': 'application/json'
@@ -107,9 +114,9 @@ export const AuthProvider = ({ children }) => {
     const fetchUserFromToken = async () => {
 
         try {
-            const apiGetUser = `http://localhost:8080/api/users/me`
+            //const apiGetUser = `http://localhost:8080/api/users/me`
 
-            const res = await fetch(apiGetUser, {
+            const res = await fetch(`${BASE_URL}/api/users/me`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                     'Content-type': 'application/json'

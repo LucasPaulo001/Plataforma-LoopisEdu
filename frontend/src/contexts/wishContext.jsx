@@ -8,16 +8,23 @@ export const WishProvider = ({ children }) => {
     const [accepted, setAccepted] = useState([]);
 
 
+    //URL de produção
+    const BASE_URL =
+        import.meta.env.MODE === "development"
+            ? "http://localhost:8080"
+            : import.meta.env.VITE_API_URL_PRODUCTION;
+
+
     //Enviando desejo
     const sendWish = async (nome, description, tags) => {
-        const sendAPI = 'http://localhost:8080/api/community/sendWish'
+        //const sendAPI = 'http://localhost:8080/api/community/sendWish'
 
         //Separando cada tag por vírgula
         const tagDeffrag = tags.split(',');
 
         try {
 
-            const res = await fetch(sendAPI, {
+            const res = await fetch(`${BASE_URL}/api/community/sendWish`, {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -45,11 +52,11 @@ export const WishProvider = ({ children }) => {
 
     //Listando desejos
     const listWish = async () => {
-        const listAPI = 'http://localhost:8080/api/community/listWish'
+        //const listAPI = 'http://localhost:8080/api/community/listWish'
 
         try {
 
-            const res = await fetch(listAPI, {
+            const res = await fetch(`${BASE_URL}/api/community/listWish`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -70,11 +77,11 @@ export const WishProvider = ({ children }) => {
 
     //Dar UP em sugestões de outros usuários
     const UPwish = async (wishId) => {
-        const upAPI = 'http://localhost:8080/api/community/Up';
+        //const upAPI = 'http://localhost:8080/api/community/Up';
 
         try {
 
-            const res = await fetch(upAPI, {
+            const res = await fetch(`${BASE_URL}/api/community/Up`, {
                 method: 'PATCH',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -108,11 +115,11 @@ export const WishProvider = ({ children }) => {
 
     //Aceitar sugestão
     const aceptWish = async (wishId) => {
-        const aceptAPI = 'http://localhost:8080/api/community/aproveWish';
+        //const aceptAPI = 'http://localhost:8080/api/community/aproveWish';
 
         try {
 
-            const res = await fetch(aceptAPI, {
+            const res = await fetch(`${BASE_URL}/api/community/aproveWish`, {
                 method: 'PATCH',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -144,11 +151,11 @@ export const WishProvider = ({ children }) => {
 
     //Deletando sugestões
     const deleteWish = async (wishId) => {
-        const deleteAPI = 'http://localhost:8080/api/community/wishDelete';
+        //const deleteAPI = 'http://localhost:8080/api/community/wishDelete';
 
         try {
 
-            const res = await fetch(deleteAPI, {
+            const res = await fetch(`${BASE_URL}/api/community/wishDelete`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -176,7 +183,7 @@ export const WishProvider = ({ children }) => {
 
     //Editar sugestão
     const wishEdit = async (wishId, nome, description, tags) => {
-        const editAPI = 'http://localhost:8080/api/community/editWish'
+        //const editAPI = 'http://localhost:8080/api/community/editWish'
 
         try {
 
@@ -184,7 +191,7 @@ export const WishProvider = ({ children }) => {
                 ? tags.map(tag => tag.trim())
                 : tags.split(',').map(tag => tag.trim());
 
-            const res = await fetch(editAPI, {
+            const res = await fetch(`${BASE_URL}/api/community/editWish`, {
                 method: 'PATCH',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -209,11 +216,11 @@ export const WishProvider = ({ children }) => {
 
     //Listando sugestões aceitas no painel de Presidente, Vice e diretores
     const listWishAccepted = async () => {
-        const listAcceptedsAPI = 'http://localhost:8080/api/community/aceptedWishes'
+        //const listAcceptedsAPI = 'http://localhost:8080/api/community/aceptedWishes'
 
-        try{
+        try {
 
-            const res = await fetch(listAcceptedsAPI, {
+            const res = await fetch(`${BASE_URL}/api/community/aceptedWishes`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -221,13 +228,13 @@ export const WishProvider = ({ children }) => {
 
             const data = await res.json();
 
-            if(res.ok){
+            if (res.ok) {
                 console.log(data)
                 setAccepted(data);
             }
 
         }
-        catch(error){
+        catch (error) {
             console.log(error);
         }
     }

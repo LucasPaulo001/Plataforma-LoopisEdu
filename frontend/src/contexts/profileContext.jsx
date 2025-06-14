@@ -8,13 +8,20 @@ export const ProfileProvider = ({ children }) => {
     const [success, setSuccess] = useState("")
     const [errors, setErrors] = useState("")
 
+
+    //URL de produção
+    const BASE_URL =
+        import.meta.env.MODE === "development"
+            ? "http://localhost:8080"
+            : import.meta.env.VITE_API_URL_PRODUCTION;
+
     //Listando hierarquia de usuários
     const listHierarchy = async () => {
-        const apiListH = 'http://localhost:8080/api/users/listEmployee'
+        //const apiListH = 'http://localhost:8080/api/users/listEmployee'
 
         try {
 
-            const res = await fetch(apiListH, {
+            const res = await fetch(`${BASE_URL}/api/users/listEmployee`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -37,10 +44,10 @@ export const ProfileProvider = ({ children }) => {
 
     //Listar todos os usuários (incluindo membros) para admins
     const listAllUser = async () => {
-        const apiList = 'http://localhost:8080/api/admin/listAll'
-        
-        try{
-            const res = await fetch(apiList, {
+        //const apiList = 'http://localhost:8080/api/admin/listAll'
+
+        try {
+            const res = await fetch(`${BASE_URL}/api/admin/listAll`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -54,7 +61,7 @@ export const ProfileProvider = ({ children }) => {
             setAllUsers(data.users)
 
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }
@@ -62,11 +69,11 @@ export const ProfileProvider = ({ children }) => {
     //Enviar feedback
     const sendFeedBack = async (userName, userEmail, content) => {
 
-        const apiFeedback = 'http://localhost:8080/api/users/feedback'
+        //const apiFeedback = 'http://localhost:8080/api/users/feedback'
 
-        try{
+        try {
 
-            const res = await fetch(apiFeedback, {
+            const res = await fetch(`${BASE_URL}/api/users/feedback`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -81,17 +88,17 @@ export const ProfileProvider = ({ children }) => {
             setSuccess(data.msg)
 
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }
 
     //Bloqueando usuários (admin)
     const blockUsers = async (idUser) => {
-        const apiBlock = `http://localhost:8080/api/admin/blockAccount/user`
+        //const apiBlock = `http://localhost:8080/api/admin/blockAccount/user`
 
-        try{
-            const res = await fetch(apiBlock, {
+        try {
+            const res = await fetch(`${BASE_URL}/api/admin/blockAccount/user`, {
                 method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -102,14 +109,14 @@ export const ProfileProvider = ({ children }) => {
 
             const data = await res.json()
 
-            if(!res.ok){
+            if (!res.ok) {
                 setErrors(data.msg)
                 return false
             }
             console.log(data)
             return true
         }
-        catch(error){
+        catch (error) {
             console.log(error)
             return false
         }
@@ -117,10 +124,10 @@ export const ProfileProvider = ({ children }) => {
 
     //Desbloquear usuário
     const unlockUser = async (idUser) => {
-        const apiUnlock = 'http://localhost:8080/api/admin/unlockAccount/user'
+        //const apiUnlock = 'http://localhost:8080/api/admin/unlockAccount/user'
 
-        try{
-            const res = await fetch(apiUnlock, {
+        try {
+            const res = await fetch(`${BASE_URL}/api/admin/unlockAccount/user`, {
                 method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -132,8 +139,8 @@ export const ProfileProvider = ({ children }) => {
             const data = await res.json()
             console.log(data, idUser)
             return true
-        }       
-        catch(error){
+        }
+        catch (error) {
             console.log(error)
             return false
         }
@@ -141,10 +148,10 @@ export const ProfileProvider = ({ children }) => {
 
     //Mudar setor do usuário (mudança de diretoria)
     const chooseEmployee = async (employee, id) => {
-        const apiChoose = 'http://localhost:8080/api/presidente/promotionEmployee'
+        //const apiChoose = 'http://localhost:8080/api/presidente/promotionEmployee'
 
-        try{
-            const res = await fetch(apiChoose, {
+        try {
+            const res = await fetch(`${BASE_URL}/api/presidente/promotionEmployee`, {
                 method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -155,21 +162,21 @@ export const ProfileProvider = ({ children }) => {
 
             const data = await res.json()
 
-            if(res.ok){
+            if (res.ok) {
                 console.log(data)
             }
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }
 
     //Mudar setor do usuário
     const chooseSetor = async (setor, id) => {
-        const apiChoose = 'http://localhost:8080/api/presidente/addSetor'
+        //const apiChoose = 'http://localhost:8080/api/presidente/addSetor'
 
-        try{
-            const res = await fetch(apiChoose, {
+        try {
+            const res = await fetch(`${BASE_URL}/api/presidente/addSetor`, {
                 method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -180,11 +187,11 @@ export const ProfileProvider = ({ children }) => {
 
             const data = await res.json()
 
-            if(res.ok){
+            if (res.ok) {
                 console.log(data)
             }
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }
@@ -192,22 +199,22 @@ export const ProfileProvider = ({ children }) => {
 
 
     return (
-        <ProfileContext.Provider value={{ 
-            Hierarchy, 
-            listHierarchy, 
-            errors, 
-            setErrors, 
-            blockUsers, 
-            success, 
-            setSuccess, 
-            sendFeedBack, 
-            listAllUser, 
-            allUsers, 
+        <ProfileContext.Provider value={{
+            Hierarchy,
+            listHierarchy,
+            errors,
+            setErrors,
+            blockUsers,
+            success,
+            setSuccess,
+            sendFeedBack,
+            listAllUser,
+            allUsers,
             unlockUser,
             chooseEmployee,
             chooseSetor
         }}
-            >
+        >
             {children}
         </ProfileContext.Provider>
     )

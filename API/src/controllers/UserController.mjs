@@ -10,6 +10,12 @@ dotenv.config();
 
 const jwtSecret = process.env.JWT_SECRET;
 
+
+const BASE_URL =
+    process.env.NODE_ENV === "development"
+        ? "http://localhost:8080"
+        : process.env.API_URL_PRODUCTION;
+
 //Gerando o token
 const generateToken = (id) => {
     return jwt.sign(
@@ -51,7 +57,7 @@ export const register = async (req, res) => {
         //Criando link de validação de E-mail
         const tokenValidation = generateTokenValidation()
 
-        const link = `http://localhost:8080/api/users/verify-email/${tokenValidation}`
+        const link = `${BASE_URL}/api/users/verify-email/${tokenValidation}`
 
         newUser.emailVerificationToken = {
             token: tokenValidation,
@@ -232,7 +238,7 @@ export const resendTokenValidation = async (req, res) => {
 
         const newToken = generateTokenValidation()
 
-        const newLink = `http://localhost:8080/api/users/verify-email/${newToken}`
+        const newLink = `${BASE_URL}/api/users/verify-email/${newToken}`
 
         user.emailVerificationToken = {
             token: newToken,

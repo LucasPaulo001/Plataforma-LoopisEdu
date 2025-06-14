@@ -5,6 +5,12 @@ import User from "../../models/User.mjs"
 import dotenv from "dotenv"
 dotenv.config()
 
+const BASE_URL =
+    process.env.NODE_ENV === "development"
+        ? "http://localhost:8080"
+        : process.env.API_URL_PRODUCTION;
+
+
 passport.serializeUser((user, done) => {
     done(null, user._id)
 })
@@ -18,7 +24,7 @@ passport.deserializeUser(async (id, done) => {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID_GOOGLE,
     clientSecret: process.env.CLIENT_SECRET_GOOGLE,
-    callbackURL: "http://localhost:8080/api/users/google/callback"
+    callbackURL: `${BASE_URL}/api/users/google/callback`
 }, async (accessToken, refreshToken, profile, done) => {
     try {
         let user = await User.findOne({ googleId: profile.id })
@@ -29,7 +35,7 @@ passport.use(new GoogleStrategy({
                 email: profile.emails[0].value
             })
         }
-        if(!user.active){
+        if (!user.active) {
             return done(null, false, { message: 'Conta bloqueada. Contate o suporte.' });
         }
         return done(null, user)
@@ -43,7 +49,7 @@ passport.use(new GoogleStrategy({
 passport.use(new GitHubStrategy({
     clientID: process.env.CLIENT_ID_GITHUB,
     clientSecret: process.env.CLIENT_SECRET_GITHUB,
-    callbackURL: "http://localhost:8080/api/users/github/callback",
+    callbackURL: `${BASE_URL}/api/users/github/callback`,
     scope: ["user:email"]
 }, async (accessToken, refreshToken, profile, done) => {
     try {
@@ -52,7 +58,7 @@ passport.use(new GitHubStrategy({
         if (!email) {
             return done(new Error("O GitHub não retornou um e-mail. Vá nas configurações da sua conta GitHub e torne o e-mail visível ou público."), null);
         }
-        
+
         let user = await User.findOne({ githubId: profile.id })
         if (!user) {
             user = await User.create({
@@ -61,7 +67,7 @@ passport.use(new GitHubStrategy({
                 email: profile.emails?.[0].value || ''
             })
         }
-        if(!user.active){
+        if (!user.active) {
             return done(null, false, { message: 'Conta bloqueada. Contate o suporte.' });
         }
         return done(null, user)

@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 import { useAuth } from "../../../contexts/authContext"
 import { OauthLogin } from "../../../components/oauth/OauthLogin"
 
-const apiResend = 'http://localhost:8080/api/users/resend-validation'
+//const apiResend = 'http://localhost:8080/api/users/resend-validation'
 
 
 export const Login = () => {
@@ -14,6 +14,13 @@ export const Login = () => {
   const [password, setPassword] = useState("")
   const { login, setShowResend, loading, setErrors, successMsg, showResend, emailResend, errors, usuario } = useAuth()
   const Navigate = useNavigate()
+
+
+  //URL de produção
+  const BASE_URL =
+    import.meta.env.MODE === "development"
+      ? "http://localhost:8080"
+      : import.meta.env.VITE_API_URL_PRODUCTION;
 
   //Funão de login (Envio de dados para o contexto)
   const handleSubmit = async (e) => {
@@ -41,7 +48,7 @@ export const Login = () => {
   //Função de reenvio de email de validação
   const handleResendVerification = async () => {
     try {
-      const res = await fetch(apiResend, {
+      const res = await fetch(`${BASE_URL}/api/users/resend-validation`, {
         method: "POST",
         headers: {
           'Content-type': 'application/json'
@@ -122,7 +129,7 @@ export const Login = () => {
           </div>
 
           <OauthLogin />
-          
+
           <span>Não tem uma conta? faça seu <Link to="/register">Cadastro</Link></span>
         </div>
       </div>

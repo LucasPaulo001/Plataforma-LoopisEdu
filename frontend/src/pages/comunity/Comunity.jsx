@@ -173,6 +173,7 @@ export const Comunity = () => {
                     windowCommunity && (
                         <div className={styles.messages}>
                             {
+                                posts.length > 0 ?
                                 posts.map((post) => (
                                     <PostCard
                                         key={post._id}
@@ -187,7 +188,11 @@ export const Comunity = () => {
                                         setOpenPublish={setOpenPublish}
                                         fixedPosts={fixedPosts}
                                     />
-                                ))
+                                )) : (
+                                    <h4 style={{textAlign: "center", width: "300px"}}>
+                                        Nenhuma publicação por aqui, seja o primeiro :)
+                                    </h4>
+                                )
                             }
                         </div>
                     )

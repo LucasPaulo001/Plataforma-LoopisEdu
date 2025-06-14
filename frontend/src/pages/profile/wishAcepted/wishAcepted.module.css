@@ -1,0 +1,36 @@
+.containerAcepted {
+    width: 100%;
+    border-left: 1px solid var(--detail);
+}
+
+.title {
+    text-align: center;
+    padding: 2vw;
+}
+
+.title h2 {
+    border-bottom: 1px solid var(--detail);
+    padding: 1vw;
+}
+
+.msg {
+    position: fixed;
+    top: 5em;
+    z-index: 9999;
+}
+
+.msg h4 {
+    background-color: #2e9f2e;
+    color: white;
+    padding: 1vw;
+    border-radius: 5px;
+}
+
+.localAccepteds {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+    overflow-y: auto;
+    gap: 2vw;
+}

@@ -24,7 +24,8 @@ import {
     aproveWish,
     UpWish,
     editWish,
-    wishDelete
+    wishDelete,
+    acceptedWishes
 
 } from "../controllers/CommunityController.mjs";
 
@@ -62,6 +63,7 @@ communityRouter. patch('/editWish', authGuard, validate, editWish);
 
 communityRouter.delete('/wishDelete', authGuard, validate, wishDelete);
 
+communityRouter.get('/aceptedWishes', authGuard, acceptedWishes)
 
 
 export default communityRouter;

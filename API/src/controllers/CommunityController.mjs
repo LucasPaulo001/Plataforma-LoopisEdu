@@ -474,5 +474,23 @@ export const wishDelete = async (req, res) => {
     }
 }
 
+//Listar sugestões aceitas
+export const acceptedWishes = async (req, res) => {
+    try{
+
+        const acceptedWishes = await WishBox.find({ approved: true }).populate("author");
+
+        if(!acceptedWishes){
+            return res.status(404).json({ errors: ["Caixa de desejo não encontrada!"] });
+        }
+
+        res.status(200).json(acceptedWishes);
+
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).json({ msg: "Erro interno do servidor!" });
+    }
+}
 
 

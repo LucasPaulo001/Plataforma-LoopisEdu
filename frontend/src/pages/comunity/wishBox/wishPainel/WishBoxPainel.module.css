@@ -121,3 +121,28 @@
     display: flex;
     gap: 1vw;
 }
+
+@media(max-width: 490px) {
+    .cardWish {
+        gap: 4vw;
+        width: 95%;
+    }
+
+    .containerPainel {
+        gap: 10vw;
+        padding: 6vw 0;
+    }
+
+    .upIcon button{
+        font-size: 8vw;
+    }
+
+    .upIcon span{
+        font-size: 6vw;
+    }
+
+    .btnAcept button{
+        font-size: 6vw;
+    }
+
+}

@@ -91,3 +91,24 @@
     color: var(--detail) !important;
     border-radius: 10px;
 }
+
+@media(max-width: 490px) {
+    .content {
+        width: 95%;
+        height: 90%;
+    }
+
+    .formBox{
+        gap: 11vw;
+        height: 80%;
+    }
+
+    .localInputBox input, .localInputBox textarea{
+        width: 100%;
+    }
+
+    .close{
+        font-size: 6vw;
+    }
+
+}

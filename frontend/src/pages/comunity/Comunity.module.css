@@ -190,4 +190,13 @@
         gap: 4vw;
     }
 
+    .navCommunity {
+        font-size: 4vw;
+        padding: 5vw;
+    }
+
+    .navCommunity .select{
+        padding: 1.8vw;
+    }
+
 }

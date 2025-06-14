@@ -26,15 +26,19 @@ export const WishBoxPainel = () => {
                 {success && <h4>{success}</h4>}
             </div>
 
-            {wish.map((wishItem) => (
-                <WishCard
-                    key={wishItem._id}
-                    wish={wishItem}
-                    usuario={usuario}
-                    UPwish={UPwish}
-                    aceptWish={aceptWish}
-                />
-            ))}
+            {wish.length > 0 ?
+                wish.map((wishItem) => (
+                    <WishCard
+                        key={wishItem._id}
+                        wish={wishItem}
+                        usuario={usuario}
+                        UPwish={UPwish}
+                        aceptWish={aceptWish}
+                    />
+                )) : (
+                    <h2>Nenhuma publicação por aqui...</h2>
+                )
+            }
         </div>
     );
 };

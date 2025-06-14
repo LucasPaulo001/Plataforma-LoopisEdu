@@ -5,6 +5,7 @@ const WishContext = createContext();
 export const WishProvider = ({ children }) => {
     const [success, setSuccess] = useState("");
     const [wish, setWish] = useState([]);
+    const [accepted, setAccepted] = useState([]);
 
 
     //Enviando desejo
@@ -206,6 +207,31 @@ export const WishProvider = ({ children }) => {
 
     }
 
+    //Listando sugestões aceitas no painel de Presidente, Vice e diretores
+    const listWishAccepted = async () => {
+        const listAcceptedsAPI = 'http://localhost:8080/api/community/aceptedWishes'
+
+        try{
+
+            const res = await fetch(listAcceptedsAPI, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            })
+
+            const data = await res.json();
+
+            if(res.ok){
+                console.log(data)
+                setAccepted(data);
+            }
+
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+
 
     return (
         <WishContext.Provider value={{
@@ -216,7 +242,9 @@ export const WishProvider = ({ children }) => {
             UPwish,
             aceptWish,
             deleteWish,
-            wishEdit
+            wishEdit,
+            listWishAccepted,
+            accepted
         }}>
             {children}
         </WishContext.Provider>

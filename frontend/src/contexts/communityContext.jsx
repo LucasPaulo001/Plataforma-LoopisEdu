@@ -286,7 +286,6 @@ export const CommunityProvider = ({ children }) => {
             const data = await res.json()
 
             if(res.ok){
-                console.log(data)
                 await listPostInCommunity()
             }
 

@@ -419,4 +419,60 @@ export const UpWish = async (req, res) => {
     }
 }
 
+//Editando caixa de desejos
+export const editWish = async (req, res) => {
+    const { wishId, nome, description, tags } = req.body;
+
+    try{
+
+        const wishBox = await WishBox.findById(wishId);
+
+        if(!wishBox){
+            return res.status(404).json({ errors: ["Caixa de desejo não encontrada!"] });
+        }
+
+        //Salvando o que for editado
+
+        if(nome){
+            wishBox.nome = nome;
+        }
+        if(description){
+            wishBox.description = description;
+        }
+        if(tags){
+            wishBox.tags = tags;
+        }
+
+        await wishBox.save();
+
+        res.status(200).json({ msg: "Desejo editado!" })
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).json({ msg: "Erro interno do servidor!" });
+    }
+}
+
+//Deletar caixa de desejos
+export const wishDelete = async (req, res) => {
+    const { wishId } = req.body;
+
+    try{
+
+        const wishBox = await WishBox.findByIdAndDelete(wishId);
+
+        if(!wishBox){
+            return res.status(404).json({ errors: ["Caixa de desejo não encontrada!"] });
+        }
+
+        res.status(200).json({ msg: "Solicitação de capacitação deletada!!" });
+
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).json({ msg: "Erro interno do servidor!" });
+    }
+}
+
+
 

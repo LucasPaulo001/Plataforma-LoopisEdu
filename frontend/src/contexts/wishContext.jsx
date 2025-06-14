@@ -3,17 +3,18 @@ import { createContext, useContext, useState } from "react";
 const WishContext = createContext();
 
 export const WishProvider = ({ children }) => {
-    const[success, setSuccess] = useState("");
-    const[wish, setWish] = useState([]);
+    const [success, setSuccess] = useState("");
+    const [wish, setWish] = useState([]);
 
 
     //Enviando desejo
     const sendWish = async (nome, description, tags) => {
         const sendAPI = 'http://localhost:8080/api/community/sendWish'
 
+        //Separando cada tag por vírgula
         const tagDeffrag = tags.split(',');
 
-        try{
+        try {
 
             const res = await fetch(sendAPI, {
                 method: 'POST',
@@ -26,7 +27,7 @@ export const WishProvider = ({ children }) => {
 
             const data = await res.json();
 
-            if(res.ok){
+            if (res.ok) {
                 console.log(data);
                 setSuccess("Deseso salvo com sucesso!");
                 listWish()
@@ -36,7 +37,7 @@ export const WishProvider = ({ children }) => {
             }
 
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }
@@ -45,23 +46,23 @@ export const WishProvider = ({ children }) => {
     const listWish = async () => {
         const listAPI = 'http://localhost:8080/api/community/listWish'
 
-        try{
+        try {
 
             const res = await fetch(listAPI, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
-                
+
             });
 
             const data = await res.json()
 
-            if(res.ok){
+            if (res.ok) {
                 setWish(data)
             }
 
         }
-        catch(error){
+        catch (error) {
             console.log(error);
         }
     }
@@ -70,7 +71,7 @@ export const WishProvider = ({ children }) => {
     const UPwish = async (wishId) => {
         const upAPI = 'http://localhost:8080/api/community/Up';
 
-        try{
+        try {
 
             const res = await fetch(upAPI, {
                 method: 'PATCH',
@@ -83,24 +84,139 @@ export const WishProvider = ({ children }) => {
 
             const data = await res.json();
 
-            if(res.ok){
+            if (res.ok) {
                 console.log(data);
+                if (data.UP) {
+                    setSuccess("UP aplicado!")
+                }
+
+                else {
+                    setSuccess("UP removido!")
+                }
+
+                setTimeout(() => {
+                    setSuccess("")
+                }, 5000)
             }
 
         }
-        catch(error){
+        catch (error) {
             console.log(error);
         }
     }
 
+    //Aceitar sugestão
+    const aceptWish = async (wishId) => {
+        const aceptAPI = 'http://localhost:8080/api/community/aproveWish';
 
-    return(
+        try {
+
+            const res = await fetch(aceptAPI, {
+                method: 'PATCH',
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({ wishId })
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                if (data.aproved) {
+                    setSuccess("Sugestão aprovada!");
+                }
+                else {
+                    setSuccess("Sugestão desaprovada!");
+                }
+                setTimeout(() => {
+                    setSuccess("")
+                }, 5000);
+                console.log(data);
+            }
+
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    //Deletando sugestões
+    const deleteWish = async (wishId) => {
+        const deleteAPI = 'http://localhost:8080/api/community/wishDelete';
+
+        try {
+
+            const res = await fetch(deleteAPI, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({ wishId })
+            })
+
+            const data = await res.json()
+
+            if (res.ok) {
+                listWish()
+                setSuccess(data.msg);
+                setTimeout(() => {
+                    setSuccess("")
+                }, 5000)
+                console.log(data);
+            }
+
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    //Editar sugestão
+    const wishEdit = async (wishId, nome, description, tags) => {
+        const editAPI = 'http://localhost:8080/api/community/editWish'
+
+        try {
+
+            const tagsArray = Array.isArray(tags)
+                ? tags.map(tag => tag.trim())
+                : tags.split(',').map(tag => tag.trim());
+
+            const res = await fetch(editAPI, {
+                method: 'PATCH',
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({ wishId, nome, description, tags: tagsArray })
+            })
+
+            const data = await res.json()
+
+            if (res.ok) {
+                listWish()
+                console.log(data)
+            }
+
+        }
+        catch (error) {
+            console.log(error)
+        }
+
+    }
+
+
+    return (
         <WishContext.Provider value={{
-            sendWish, 
-            success, 
-            listWish, 
+            sendWish,
+            success,
+            listWish,
             wish,
-            UPwish
+            UPwish,
+            aceptWish,
+            deleteWish,
+            wishEdit
         }}>
             {children}
         </WishContext.Provider>

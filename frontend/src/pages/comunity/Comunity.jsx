@@ -12,8 +12,9 @@ import { useAuth } from "../../contexts/authContext"
 import { usePublish } from "../../contexts/communityContext";
 import { PostsFixed } from "./PostsFixed/PostsFixed";
 import { PostCard } from "./PostCard/PostCard";
-import { WishBox } from "./wishBox/WishBox";
-import { WishBoxPainel } from "./wishBox/wishBoxPainel";
+import { WishBox } from "./wishBox/wishForm/WishBox";
+import { WishBoxPainel } from "./wishBox/wishPainel/wishBoxPainel";
+
 
 
 export const Comunity = () => {
@@ -103,17 +104,17 @@ export const Comunity = () => {
                                 <button>
                                     <BsPinFill onClick={() => setOpenFixed(prev => !prev)} />
                                 </button>
-
-                                {/* Botão de caixa de desejos */}
-                                <button onClick={() => setOpenWish(true)}>
-                                    <BsBox2Heart />
-                                </button>
-
-                                {/* Janela para preenchimento dos dados do desejo */}
-                                <WishBox setOpenWish={setOpenWish} openWish={openWish} />
                             </>
                         )
                     }
+
+                    {/* Janela para preenchimento dos dados do desejo */}
+                    <WishBox setOpenWish={setOpenWish} openWish={openWish} />
+                    
+                    {/* Botão de caixa de desejos */}
+                    <button onClick={() => setOpenWish(true)}>
+                        <BsBox2Heart />
+                    </button>
                 </div>
                 {success && <span className="successMSGsystem">{success}</span>}
 

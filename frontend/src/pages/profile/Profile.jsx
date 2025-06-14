@@ -6,6 +6,7 @@ import { useState, useEffect } from "react"
 import { BsPerson, BsLock } from "react-icons/bs"
 import { AdminTools } from "./adminTools/AdminTools"
 import { Faq } from "./faq/Faq"
+import { WishAcepted } from "./wishAcepted/wishAcepted"
 
 export const Profile = () => {
     const { usuario } = useAuth()
@@ -54,6 +55,17 @@ export const Profile = () => {
     }, 7000)
 
 
+    //Roles que poderão ver as capacitações que forão aceitas
+    const rolesAceptWish = [
+        'Presidente',
+        'Vice-Presidente',
+        'Diretor de Projetos',
+        'Diretor de RH',
+        'Diretor de Marketing',
+        'Diretor de Comercial'
+    ];
+
+
 
     if (!usuario) return <p>Carregando...</p>
 
@@ -85,11 +97,23 @@ export const Profile = () => {
                                 setSelect("faq")}>
                                 FAQ
                             </li>
+
+                            {/* Opções de funcionalidades de admin */}
                             {
                                 usuario.role == "admin" && (
                                     <li className={select === "adminTools" && "selected"} onClick={() =>
                                         setSelect("adminTools")}>
                                         AdminTools
+                                    </li>
+                                )
+                            }
+
+                            {/* Opção de capacitações aceitas */}
+                            {
+                                rolesAceptWish.includes(usuario.role) && (
+                                    <li className={select === "wishAcept" && "selected"} onClick={() =>
+                                        setSelect("wishAcept")}>
+                                        Capacitações aceitas
                                     </li>
                                 )
                             }
@@ -183,6 +207,8 @@ export const Profile = () => {
                         </>
                     )
                 }
+
+                {/* Tela de admin */}
                 {
                     usuario.role == "admin" ?
                         select == "adminTools" && (
@@ -195,6 +221,14 @@ export const Profile = () => {
                             <></>
                         )
                 }
+
+                {/* Tela de Capacitações aceitas */}
+                {
+                    rolesAceptWish.includes(usuario.role) && select == "wishAcept" && (
+                        <WishAcepted />
+                    )
+                }
+
             </div >
         </div >
     )

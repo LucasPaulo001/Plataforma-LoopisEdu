@@ -72,3 +72,22 @@
     font-size: 2vw;
     color: red;
 }
+
+.localInputBox input {
+    height: 30px;
+    border-radius: 10px;
+    text-indent: 15px;
+    outline: 1px solid var(--detail);
+    border: none;
+    color: white;
+    background-color: var(--window);
+}
+
+.btnSave button {
+    border: 2px solid var(--detail) !important;
+    font-size: 1.2vw;
+    width: 150px;
+    padding: .4vw;
+    color: var(--detail) !important;
+    border-radius: 10px;
+}

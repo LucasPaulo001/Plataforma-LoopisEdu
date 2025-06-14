@@ -22,7 +22,9 @@ import {
     sendWish,
     listWish,
     aproveWish,
-    UpWish
+    UpWish,
+    editWish,
+    wishDelete
 
 } from "../controllers/CommunityController.mjs";
 
@@ -55,6 +57,10 @@ communityRouter.get('/listWish', authGuard, listWish);
 communityRouter.patch('/aproveWish', authGuard, validate, aproveWish);
 
 communityRouter.patch('/Up', authGuard, UpWish);
+
+communityRouter. patch('/editWish', authGuard, validate, editWish);
+
+communityRouter.delete('/wishDelete', authGuard, validate, wishDelete);
 
 
 

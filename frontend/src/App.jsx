@@ -27,7 +27,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter basename='/app'>
+      <BrowserRouter>
         {token ? <Navbar /> : ""}
         <Routes>
           <Route path="/login" element={!token ? <Login /> : <Navigate to={'/loopisEdu'} />} />

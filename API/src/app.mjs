@@ -32,12 +32,12 @@ const __dirname = path.dirname(__filename);
 
 // Caminho para a landing page e React build
 const publicPath = path.join(__dirname, '../../landingPage');
-const reactDistPath = path.join(__dirname, 'dist');
-
-app.use('/app', express.static(reactDistPath));
+const reactDistPath = path.join(__dirname, '../../frontend/build');
 
 
-app.use(express.static(publicPath));
+// Middleware de arquivos estáticos
+app.use(express.static(publicPath)); // landing page
+app.use('/app', express.static(reactDistPath)); // SPA React
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Dados json e formulário
@@ -47,6 +47,7 @@ app.use(express.urlencoded({ extended: true }));
 // Rotas da aplicação
 import router from "./routes/Router.mjs";
 app.use(router);
+
 
 // Porta com fallback
 const PORT = process.env.PORT || 8080;

@@ -1,6 +1,13 @@
 import express from "express";
 const routerUser = express.Router();
 import jwt from "jsonwebtoken"
+import dotenv from "dotenv";
+dotenv.config();
+
+const BASE_URL =
+    process.env.NODE_ENV === "development"
+        ? "http://localhost:5173"
+        : process.env.API_URL_FRONTEND;
 
 
 //Controllers
@@ -63,10 +70,10 @@ routerUser.get('/listClassSaved', authGuard, listSavedClasses)
 routerUser.get("/google", passport.authenticate("google", {scope: ["profile", "email"] }))
 
 routerUser.get("/google/callback",
-    passport.authenticate("google", { failureRedirect: "http://localhost:5173/api/users/login" }),
+    passport.authenticate("google", { failureRedirect: `${BASE_URL}/api/users/login` }),
     (req, res) => {
         const token = jwt.sign({id: req.user._id}, process.env.JWT_SECRET, { expiresIn: "7d" })
-        res.redirect(`http://localhost:5173/oauth-redirect?token=${token}`)
+        res.redirect(`${BASE_URL}/oauth-redirect?token=${token}`)
     }
 )
 
@@ -75,10 +82,10 @@ routerUser.get("/google/callback",
 routerUser.get("/github", passport.authenticate("github", {scope: ["user:email"]}) )
 
 routerUser.get("/github/callback",
-    passport.authenticate("github", { failureRedirect: "http://localhost:5173/api/users/login" }),
+    passport.authenticate("github", { failureRedirect: `${BASE_URL}/api/users/login` }),
     (req, res) => {
         const token = jwt.sign({id: req.user._id}, process.env.JWT_SECRET, { expiresIn: "7d" })
-        res.redirect(`http://localhost:5173/oauth-redirect?token=${token}`)
+        res.redirect(`${BASE_URL}/oauth-redirect?token=${token}`)
     }
 )
 

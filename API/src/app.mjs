@@ -43,6 +43,9 @@ app.use(express.static(publicPath));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const reactDistPath = path.join(__dirname, 'dist');
+
+
 app.get('/app/*', (req, res) => {
   res.sendFile(path.join(reactDistPath, 'index.html'));
 });
